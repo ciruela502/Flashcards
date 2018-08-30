@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="main_activity_appbarlayout">54dp</dimen>
+    <dimen name="textsize_collapsed_title">20dp</dimen>
+    <dimen name="main_activity_ctl_margin_start">16dp</dimen>
+    <dimen name="textsize_expanded_title">28dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+
+</resources>

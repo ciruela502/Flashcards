@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/flashcard_list"
+        android:title="Przeglądaj"
+        android:titleCondensed="string"
+        android:icon="@drawable/ic_search_24dp" />
+
+    <item
+        android:id="@+id/learning"
+        android:title="Learning"
+        android:titleCondensed="string"
+        android:icon="@drawable/ic_wb_incandescent_24dp" />
+</menu>

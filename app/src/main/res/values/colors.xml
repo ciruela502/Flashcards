@@ -8,4 +8,9 @@
     <color name="colorSecondaryDark">#c60055</color>
     <color name="colorPrimaryText">#37474f</color>
     <color name="colorSecondaryText">#263238</color>
+
+
+    <color name="colorWhite">#ffffff</color>
+
+
 </resources>
