@@ -8,6 +8,9 @@ import martakonik.flashcards.R
 import martakonik.flashcards.databinding.ActivityMainBinding
 import martakonik.flashcards.flashcardsList.WordsListAdapter
 import martakonik.flashcards.services.MockedBoxService
+import android.support.annotation.NonNull
+import android.support.design.widget.BottomNavigationView
+import android.view.MenuItem
 
 
 class MainActivity : AppCompatActivity(){
@@ -19,13 +22,15 @@ class MainActivity : AppCompatActivity(){
 //todo wymyslec switne menu na elementy: viepagerr i taby ? - do fragmentu
         //nowe fiszki
         //uczenie
-        val boxService = MockedBoxService()
-        val flashcards = boxService.box.partOfBoxes[0].flashcards
-
-        binding.flashcardList.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = WordsListAdapter(flashcards)
+        var adapter = MainViewPagerAdapter(supportFragmentManager)
+        binding.mainViewPager.adapter = adapter
+        binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+R.id.flashcard_list -> adapter.setCurrentPosition()
+            }
+            true
         }
+//        }
 //        binding.viewModel = MainViewModel()
     }
 }
