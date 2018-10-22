@@ -2,7 +2,6 @@ package martakonik.flashcards.addFlashcard
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
-import android.util.Log
 import android.view.View
 import martakonik.flashcards.Database
 import martakonik.flashcards.R
@@ -21,17 +20,20 @@ class AddFlashcardViewModel(
     var translation = ""
 
     fun saveFlashcard(view: View) {
-        Log.d("marta", flashcard.toString())
         flashcard.word = word
         flashcard.translation = translation
 
         database.addFlashcard(flashcard)
 
-        word = ""
-        translation = ""
-        notifyChange()
+        cleanEditTexts()
 
         snackbarHelper.showSnackbar(R.string.add_flashcard_succes_message)
 
+    }
+
+    private fun cleanEditTexts() {
+        word = ""
+        translation = ""
+        notifyChange()
     }
 }

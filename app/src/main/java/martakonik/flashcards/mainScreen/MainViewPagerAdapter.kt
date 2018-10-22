@@ -21,6 +21,6 @@ class MainViewPagerAdapter(fm: FragmentManager?) : FragmentStatePagerAdapter(fm)
     }
 
     fun setCurrentPosition() {
-        //todo przez binding w xml
+        //todo handle clicks on bottom nav tab
     }
 }

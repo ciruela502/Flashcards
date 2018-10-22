@@ -5,7 +5,6 @@ import io.realm.RealmModel
 import martakonik.flashcards.data.Box
 import martakonik.flashcards.models.Flashcard
 import martakonik.flashcards.services.BoxService
-import martakonik.flashcards.services.MockedBoxService
 
 class Database(private val realm: Realm) {
 
@@ -35,20 +34,23 @@ class Database(private val realm: Realm) {
             //todo change when add more boxes
             val box = realm.where(Box::class.java).findFirst()
 
-            val num = realm.where(Flashcard::class.java).max("id")
-            val nextID: Int
-            nextID = if (num == null) {
-                1
-            } else {
-                num.toInt() + 1
-            }
-            flashcard.id = nextID
+            flashcard.id = getNextFlashcardId(realm)
             box?.let {
                 it.partOfBoxes[0]?.flashcards?.add(flashcard)
                 realm.copyToRealmOrUpdate(box)
             }
-//            val obj = realm.createObject(Flashcard::class.java, nextID)
 
         }
+    }
+
+    private fun getNextFlashcardId(realm: Realm): Int {
+        val num = realm.where(Flashcard::class.java).max("id")
+        val nextId: Int
+        nextId = if (num == null) {
+            1
+        } else {
+            num.toInt() + 1
+        }
+        return nextId
     }
 }

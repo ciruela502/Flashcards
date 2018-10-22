@@ -12,8 +12,8 @@ class IncreaseStudyLevelUseCase(private var boxService: BoxService?,
         var i = 0
         var boxNum = 0
 
-        val copiedBox : Box? = database.getCopiedObject(boxService?.box)
-        val partOfBoxes  = copiedBox?.partOfBoxes
+        val copiedBox: Box? = database.getCopiedObject(boxService?.box)
+        val partOfBoxes = copiedBox?.partOfBoxes
         partOfBoxes?.let {
 
             while (i < partOfBoxes.size) {

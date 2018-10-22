@@ -2,8 +2,6 @@ package martakonik.flashcards.data
 
 import io.realm.RealmList
 import io.realm.RealmObject
-import java.util.ArrayList
-
 import martakonik.flashcards.models.Flashcard
 
 open class PartOfBox : RealmObject {

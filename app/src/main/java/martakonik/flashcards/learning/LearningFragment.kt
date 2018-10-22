@@ -27,8 +27,7 @@ class LearningFragment : BaseFragment() {
                 DecreaseStudyLevelUseCase(boxService, database),
                 GetNextCardUseCase(boxService))
         binding.viewModel = learningViewModel
+
         return binding.root
     }
-
-
 }

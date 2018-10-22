@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.view.View
-import com.google.gson.Gson
 import martakonik.flashcards.DecreaseStudyLevelUseCase
 import martakonik.flashcards.GetNextCardUseCase
 import martakonik.flashcards.IncreaseStudyLevelUseCase
@@ -19,31 +18,22 @@ class LearningViewModel(
         private var decreaseStudyLevel: DecreaseStudyLevelUseCase,
         private var nextCard: GetNextCardUseCase
 ) : BaseObservable() {
-    var index = 0
+    private var index = 0
     private var showingBack = true
     private var flashcard: Flashcard = Flashcard()
+    private var boxPartNumber = 0
+
     @get: Bindable
     var backVisible = View.GONE
+
     @get: Bindable
     var frontVisible = View.VISIBLE
 
-    var boxPartNumber = 0
+
     @get: Bindable
     var boxPartNumberText = boxPartNumber.toString()
 
-//    private fun getFlascardFromBox(boxPartNumber: Int): List<Flashcard> {
-//        val partOfBoxes = box.partOfBoxes
-//        // todo change to more sophisticated algorithm
-////        for (part in partOfBoxes) {
-////            if (!part.flashcards.isEmpty()) {
-////                return part.flashcards
-////            }
-////        }
-//        return partOfBoxes[boxPartNumber].flashcards
-//    }
-
     init {
-//        flashcard = nextCard.execute(null) //getFlascardFromBox(boxPartNumber)
         flipCard(null)
     }
 
@@ -82,9 +72,6 @@ class LearningViewModel(
                         R.animator.card_flip_left_in,
                         R.animator.card_flip_left_out)
                 .replace(R.id.container, fragment)
-
-                // Add this transaction to the back stack, allowing users to press
-                // Back to get to the front of the card.
                 .addToBackStack(null)
                 .commit()
     }
@@ -97,17 +84,8 @@ class LearningViewModel(
     }
 
     fun onLearnedClick(view: View) {
-//        if (index < flashcards.size) {
-            increaseStudyLevel.execute(flashcard)
-            flipCard(null)
-//        } else {
-//            boxPartNumber = boxPartNumber.plus(1)
-//            flashcards = getFlascardFromBox(boxPartNumber)
-//            flipCard(null)
-//            //todo pobierz nastepny box
-//            // wyswietl info ze kolejny box
-//            // flip
-//        }
+        increaseStudyLevel.execute(flashcard)
+        flipCard(null)
     }
 
     fun onNotLearned(view: View) {
