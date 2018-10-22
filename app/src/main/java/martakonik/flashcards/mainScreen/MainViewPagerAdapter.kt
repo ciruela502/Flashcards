@@ -8,7 +8,7 @@ import martakonik.flashcards.learning.LearningFragment
 
 class MainViewPagerAdapter(fm: FragmentManager?) : FragmentStatePagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
-        return if (position ==0 ) {
+        return if (position == 0 ) {
             ListFragment()
         } else {
             LearningFragment()

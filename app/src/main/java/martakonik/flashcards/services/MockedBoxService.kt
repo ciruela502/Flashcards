@@ -1,18 +1,31 @@
 package martakonik.flashcards.services
 
-import java.util.ArrayList
+import io.realm.RealmList
+import io.realm.RealmResults
+import martakonik.flashcards.Database
 
-import martakonik.fiszki.domain.models.Flashcard
+import martakonik.flashcards.models.Flashcard
 import martakonik.flashcards.data.Box
 import martakonik.flashcards.data.PartOfBox
 
-class MockedBoxService : BoxService {
-    private var box: Box = getBox()
+class MockedBoxService(private val database: Database) : BoxService {
 
-    override fun getBox(): Box {
-        val box = Box()
+    override var box: Box? = getBoxFromDatabase()
 
-        val flashcards = ArrayList<Flashcard>()
+    fun getBoxFromDatabase(): Box? {
+        return database.getFlashcards()
+    }
+
+    fun saveBox() {
+        database.saveFlashcards(getMockedBox())
+    }
+
+    private fun getMockedBox(): Box {
+        val box = Box().apply {
+            id = 1
+        }
+
+        val flashcards = RealmList<Flashcard>()
         flashcards.add(Flashcard("word1", "slowo1", 1))
         flashcards.add(Flashcard("word2", "slowo2", 2))
         flashcards.add(Flashcard("word3", "slowo3", 3))

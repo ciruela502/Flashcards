@@ -1,14 +1,16 @@
 package martakonik.flashcards.data
 
+import io.realm.RealmList
+import io.realm.RealmObject
 import java.util.ArrayList
 
-import martakonik.fiszki.domain.models.Flashcard
+import martakonik.flashcards.models.Flashcard
 
-class PartOfBox {
-    var flashcards: List<Flashcard> = ArrayList()
-    internal var id: Int = 0
+open class PartOfBox : RealmObject {
+    var flashcards: RealmList<Flashcard> = RealmList()
+    var id: Int = 0
 
-    constructor(flashcards: List<Flashcard>, id: Int) {
+    constructor(flashcards: RealmList<Flashcard>, id: Int) {
         this.flashcards = flashcards
         this.id = id
     }
@@ -16,4 +18,6 @@ class PartOfBox {
     constructor(id: Int) {
         this.id = id
     }
+
+    constructor()
 }

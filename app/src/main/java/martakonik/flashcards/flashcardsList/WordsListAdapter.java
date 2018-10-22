@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import martakonik.fiszki.domain.models.Flashcard;
+import martakonik.flashcards.models.Flashcard;
 import martakonik.flashcards.R;
 
 public class WordsListAdapter extends RecyclerView.Adapter<WordsListAdapter.ViewHolder> {

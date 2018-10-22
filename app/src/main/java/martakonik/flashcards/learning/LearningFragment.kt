@@ -1,24 +1,33 @@
 package martakonik.flashcards.learning
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import martakonik.fiszki.domain.models.Flashcard
+import martakonik.flashcards.BaseFragment
+import martakonik.flashcards.DecreaseStudyLevelUseCase
+import martakonik.flashcards.GetNextCardUseCase
+import martakonik.flashcards.IncreaseStudyLevelUseCase
 import martakonik.flashcards.databinding.FragmentLearningBinding
 import martakonik.flashcards.services.MockedBoxService
 
-class LearningFragment : Fragment() {
+const val CARD = "card"
+
+class LearningFragment : BaseFragment() {
+    private lateinit var learningViewModel: LearningViewModel
     private lateinit var binding: FragmentLearningBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentLearningBinding.inflate(inflater, container, false)
-        binding.viewModel = LearningViewModel()
+        val boxService = MockedBoxService(database)
+        boxService.saveBox()
+        learningViewModel = LearningViewModel(
+                childFragmentManager,
+                IncreaseStudyLevelUseCase(boxService, database),
+                DecreaseStudyLevelUseCase(boxService, database),
+                GetNextCardUseCase(boxService))
+        binding.viewModel = learningViewModel
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
     }
 
 

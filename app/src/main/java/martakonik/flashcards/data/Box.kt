@@ -1,9 +1,13 @@
 package martakonik.flashcards.data
 
-import java.util.ArrayList
+import io.realm.RealmList
+import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
 
-class Box {
-    var partOfBoxes: ArrayList<PartOfBox> = ArrayList()
+open class Box : RealmObject() {
+    @PrimaryKey
+    var id: Int? = null
+    var partOfBoxes: RealmList<PartOfBox> = RealmList()
 
 
 }
