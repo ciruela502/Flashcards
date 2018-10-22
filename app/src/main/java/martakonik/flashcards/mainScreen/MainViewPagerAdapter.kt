@@ -8,6 +8,7 @@ import martakonik.flashcards.flashcardsList.ListFragment
 import martakonik.flashcards.learning.LearningFragment
 
 class MainViewPagerAdapter(fm: FragmentManager?) : FragmentStatePagerAdapter(fm) {
+
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> ListFragment()
@@ -16,11 +17,5 @@ class MainViewPagerAdapter(fm: FragmentManager?) : FragmentStatePagerAdapter(fm)
         }
     }
 
-    override fun getCount(): Int {
-        return 3
-    }
-
-    fun setCurrentPosition() {
-        //todo handle clicks on bottom nav tab
-    }
+    override fun getCount(): Int = 3
 }
