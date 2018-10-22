@@ -5,7 +5,11 @@
         android:title="Przeglądaj"
         android:titleCondensed="string"
         android:icon="@drawable/ic_search_24dp" />
-
+    <item
+        android:id="@+id/add_flashcard"
+        android:title="Dodaj"
+        android:titleCondensed="string"
+        android:icon="@drawable/ic_add_box_black_24dp" />
     <item
         android:id="@+id/learning"
         android:title="Learning"

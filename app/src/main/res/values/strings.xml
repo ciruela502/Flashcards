@@ -4,4 +4,7 @@
     <string name="translation">translation</string>
     <string name="ok">ok</string>
     <string name="not_ok">not ok</string>
+    <string name="word">Słowo</string>
+    <string name="save">zapisz</string>
+    <string name="add_flashcard_succes_message">Successfully add new flashcard</string>
 </resources>
