@@ -19,6 +19,8 @@ class ListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val boxService = MockedBoxService(database)
+
+        //todo show all flashards no matter what study level it is
         val flashcards = boxService.box?.partOfBoxes?.get(0)?.flashcards
 
         binding.flashcardList.apply {

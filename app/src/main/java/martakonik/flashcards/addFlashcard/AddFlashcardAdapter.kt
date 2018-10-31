@@ -26,7 +26,7 @@ class AddFlashcardAdapter(fm: FragmentManager?) : FragmentStatePagerAdapter(fm) 
         val newWord = frontFragment.wordEditText.text.toString()
         val newTranslation = backFragment.translationEditText.text.toString()
 
-        return if (!newWord.isNullOrBlank() && !newTranslation.isNullOrBlank()) {
+        return if (!newWord.isBlank() && !newTranslation.isBlank()) {
 
             val flashcard = Flashcard().apply {
                 word = newWord
