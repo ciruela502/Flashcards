@@ -8,32 +8,10 @@ import martakonik.flashcards.R
 import martakonik.flashcards.models.Flashcard
 import martakonik.flashcards.utils.SnackbarHelper
 
-class AddFlashcardViewModel(
-        private val database: Database,
-        private val snackbarHelper: SnackbarHelper) : BaseObservable() {
+class AddFlashcardViewModel() : BaseObservable() {
 
-    var flashcard = Flashcard()
 
     @Bindable
-    var word = ""
-    @Bindable
-    var translation = ""
+    var text = ""
 
-    fun saveFlashcard(view: View) {
-        flashcard.word = word
-        flashcard.translation = translation
-
-        database.addFlashcard(flashcard)
-
-        cleanEditTexts()
-
-        snackbarHelper.showSnackbar(R.string.add_flashcard_succes_message)
-
-    }
-
-    private fun cleanEditTexts() {
-        word = ""
-        translation = ""
-        notifyChange()
-    }
 }

@@ -2,12 +2,12 @@ package martakonik.flashcards.mainScreen
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import martakonik.flashcards.BaseActivity
 import martakonik.flashcards.R
 import martakonik.flashcards.databinding.ActivityMainBinding
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,12 +15,12 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = MainViewPagerAdapter(supportFragmentManager)
         binding.mainViewPager.adapter = adapter
+        binding.viewModel = MainViewModel(navigator)
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.flashcard_list -> binding.mainViewPager.currentItem = 0
-                R.id.add_flashcard -> binding.mainViewPager.currentItem = 1
-                R.id.learning -> binding.mainViewPager.currentItem = 2
+                R.id.learning -> binding.mainViewPager.currentItem = 1
             }
             true
         }

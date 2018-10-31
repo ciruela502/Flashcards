@@ -1,6 +1,11 @@
 package martakonik.flashcards.mainScreen
 
-class MainViewModel {
+import android.view.View
+import martakonik.flashcards.utils.Navigator
 
-    val string = "welcome"
+class MainViewModel(private val navigator: Navigator) {
+
+    fun onAddClick(view: View) {
+        navigator.openAddFlashcardActivity()
+    }
 }
