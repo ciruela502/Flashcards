@@ -10,12 +10,15 @@ import martakonik.flashcards.data.Box
 class BoxItemViewModel(
         @get: Bindable
         val box: Box,
-        private val sheetBehavior: BottomSheetBehavior<ConstraintLayout?>?
+        private val sheetBehavior: BottomSheetBehavior<ConstraintLayout?>?,
+        private val choosenBox: (Int) -> Any
 ) : BaseObservable() {
     @get: Bindable
     val boxName = box.name
 
     fun onBoxClick(view: View) {
+        //show fragment with chosen box
+        box.id?.let { choosenBox(it) }
         sheetBehavior?.state = BottomSheetBehavior.STATE_EXPANDED
     }
 }

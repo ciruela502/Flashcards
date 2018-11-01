@@ -19,8 +19,8 @@ class Database(private val realm: Realm) {
         }
     }
 
-    fun getFlashcardsList(): RealmResults<Flashcard>? {
-        return realm.where(Flashcard::class.java).findAll()
+    fun getFlashcardsListByBoxId(boxId: Int): RealmResults<Flashcard>? {
+        return realm.where(Flashcard::class.java).equalTo("boxId", boxId).findAll()
     }
     fun getBoxList(): RealmResults<Box>? {
         return realm.where(Box::class.java).findAll()

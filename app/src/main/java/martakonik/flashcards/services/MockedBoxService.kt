@@ -12,7 +12,7 @@ class MockedBoxService(private val database: Database) : BoxService {
     override var box: Box? = getBoxFromDatabase()
 
     fun getBoxFromDatabase(): Box? {
-        saveBox()
+//        saveBox()
         return database.getFlashcards()
     }
 

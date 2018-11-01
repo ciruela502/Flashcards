@@ -2,7 +2,6 @@ package martakonik.flashcards.boxList
 
 import android.os.Bundle
 import android.support.design.widget.BottomSheetBehavior
-import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,18 +14,10 @@ class BoxListFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentBoxListBinding.inflate(inflater, container, false)
+        val sheetBehavior = BottomSheetBehavior.from(binding.flashcardList?.bottomsheet)
+        val adapter = database.getBoxList()?.let { BoxListAdapter(it, sheetBehavior) }
+        binding.viewModel = BoxListViewModel(database, adapter)
 
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val sheetBehavior = BottomSheetBehavior.from(binding.flashcardList?.bottomsheet)
-
-        binding.flashcardBoxList.apply {
-            layoutManager = GridLayoutManager(context, 2)
-            adapter = database.getBoxList()?.let { BoxListAdapter(it, sheetBehavior) }
-        }
-        binding.viewModel = BoxListViewModel(database)
     }
 }

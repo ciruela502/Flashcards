@@ -9,12 +9,13 @@ import io.realm.RealmRecyclerViewAdapter
 import io.realm.RealmResults
 import martakonik.flashcards.data.Box
 import martakonik.flashcards.databinding.BoxListItemBinding
-import martakonik.flashcards.utils.Navigator
 
 class BoxListAdapter(
         data: RealmResults<Box>,
         private val sheetBehavior: BottomSheetBehavior<ConstraintLayout?>?
 ) : RealmRecyclerViewAdapter<Box, BoxListAdapter.ViewHolder>(data, true) {
+    lateinit var choosenBox: (Int) -> Any
+
     init {
         setHasStableIds(true)
     }
@@ -25,7 +26,7 @@ class BoxListAdapter(
 
     override fun onBindViewHolder(holder: BoxListAdapter.ViewHolder, position: Int) {
         holder.binding.apply {
-            viewModel = getItem(position)?.let { BoxItemViewModel(it, sheetBehavior) }
+            viewModel = getItem(position)?.let { BoxItemViewModel(it, sheetBehavior, choosenBox) }
             executePendingBindings()
         }
     }
