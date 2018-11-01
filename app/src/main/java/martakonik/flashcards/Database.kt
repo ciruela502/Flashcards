@@ -22,7 +22,9 @@ class Database(private val realm: Realm) {
     fun getFlashcardsList(): RealmResults<Flashcard>? {
         return realm.where(Flashcard::class.java).findAll()
     }
-
+    fun getBoxList(): RealmResults<Box>? {
+        return realm.where(Box::class.java).findAll()
+    }
     fun <T: RealmModel> getCopiedObject(realmObject: T?): T? {
         return realm.copyFromRealm(realmObject)
     }

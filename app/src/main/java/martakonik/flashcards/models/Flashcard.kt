@@ -9,13 +9,15 @@ import kotlinx.android.parcel.Parcelize
 open class Flashcard() : RealmObject(), Parcelable {
     @PrimaryKey
     var id: Int = 0
+    var boxId: Int = 0
     var word = ""
     var translation = ""
 
-    constructor(word: String, translation: String, id: Int) : this() {
+    constructor(word: String, translation: String, id: Int, boxId: Int) : this() {
         this.word = word
         this.translation = translation
         this.id = id
+        this.boxId = boxId
     }
 
     override fun equals(obj: Any?): Boolean {

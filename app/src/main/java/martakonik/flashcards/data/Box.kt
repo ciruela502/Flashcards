@@ -7,5 +7,6 @@ import io.realm.annotations.PrimaryKey
 open class Box : RealmObject() {
     @PrimaryKey
     var id: Int? = null
+    var name: String = ""
     var partOfBoxes: RealmList<PartOfBox> = RealmList()
 }
