@@ -1,13 +1,13 @@
 package martakonik.flashcards.flashcardsList
 
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import martakonik.flashcards.BaseFragment
 import martakonik.flashcards.databinding.FragmentListBinding
-import martakonik.flashcards.services.MockedBoxService
 
 class ListFragment : BaseFragment() {
     private lateinit var binding: FragmentListBinding
@@ -18,15 +18,11 @@ class ListFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val boxService = MockedBoxService(database)
-
-        //todo show all flashards no matter what study level it is
-        val flashcards = boxService.box?.partOfBoxes?.get(0)?.flashcards
 
         binding.flashcardList.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = WordsListAdapter(flashcards)
+            adapter = database.getFlashcardsList()?.let { WordsListAdapter(it) }
+            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
-        binding.viewModel = ListModelView()
     }
 }

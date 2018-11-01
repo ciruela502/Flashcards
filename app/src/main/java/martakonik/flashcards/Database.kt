@@ -2,6 +2,7 @@ package martakonik.flashcards
 
 import io.realm.Realm
 import io.realm.RealmModel
+import io.realm.RealmResults
 import martakonik.flashcards.data.Box
 import martakonik.flashcards.models.Flashcard
 import martakonik.flashcards.services.BoxService
@@ -16,6 +17,10 @@ class Database(private val realm: Realm) {
         realm.executeTransaction {
             it.copyToRealmOrUpdate(box)
         }
+    }
+
+    fun getFlashcardsList(): RealmResults<Flashcard>? {
+        return realm.where(Flashcard::class.java).findAll()
     }
 
     fun <T: RealmModel> getCopiedObject(realmObject: T?): T? {

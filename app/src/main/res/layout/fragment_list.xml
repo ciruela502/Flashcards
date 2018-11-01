@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="martakonik.flashcards.flashcardsList.ListModelView" />
+            type="martakonik.flashcards.flashcardsList.ListViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
