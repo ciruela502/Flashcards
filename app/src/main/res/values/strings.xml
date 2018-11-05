@@ -15,4 +15,7 @@
     <string name="empty_fields_message">Fill all fields: box, word and translation</string>
     <string name="type_new_word">Type new word</string>
     <string name="type_translation">Type translation</string>
+    <string name="learning">Learning</string>
+    <string name="show_flashcards">Show flashcards</string>
+    <string name="add_flashcards">Add flashcards</string>
 </resources>

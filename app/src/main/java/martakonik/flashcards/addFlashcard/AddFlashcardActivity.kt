@@ -5,6 +5,7 @@ import android.os.Bundle
 import martakonik.flashcards.BaseActivity
 import martakonik.flashcards.R
 import martakonik.flashcards.databinding.ActivityAddFlashcardBinding
+import martakonik.flashcards.learning.BOX_ID
 import martakonik.flashcards.utils.SnackbarHelper
 
 class AddFlashcardActivity : BaseActivity() {
@@ -14,8 +15,9 @@ class AddFlashcardActivity : BaseActivity() {
 
         val binding = DataBindingUtil.setContentView<ActivityAddFlashcardBinding>(this, R.layout.activity_add_flashcard)
         val adapter = AddFlashcardAdapter(supportFragmentManager)
+        val boxId = intent.getIntExtra(BOX_ID, 0)
         binding.addViewPager.adapter = adapter
-        binding.viewModel = AddFlashCardActivityViewModel(database, SnackbarHelper(binding.root), adapter)
+        binding.viewModel = AddFlashCardActivityViewModel(database, SnackbarHelper(binding.root), adapter, boxId)
         binding.dots.setupWithViewPager(binding.addViewPager)
 
     }

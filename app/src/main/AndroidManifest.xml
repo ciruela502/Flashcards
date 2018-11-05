@@ -21,6 +21,9 @@
         </activity>
         <activity android:name=".addFlashcard.AddFlashcardActivity" />
         <activity android:name=".BaseActivity" />
+        <activity android:name=".addBox.AddBoxActivity" />
+        <activity android:name=".learning.LearningActivity" />
+        <activity android:name=".flashcardsList.FlashcardListActivity" />
     </application>
 
 </manifest>

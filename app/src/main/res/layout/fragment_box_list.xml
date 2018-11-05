@@ -31,7 +31,7 @@
 
         <include
             android:id="@+id/flashcardList"
-            bind:viewModel="@{viewModel.flascardsListViewModel}"
-            layout="@layout/view_bottom_flashcards_list" />
+            bind:viewModel="@{viewModel.boxMenuViewModel}"
+            layout="@layout/view_bottom_box_menu" />
     </android.support.design.widget.CoordinatorLayout>
 </layout>

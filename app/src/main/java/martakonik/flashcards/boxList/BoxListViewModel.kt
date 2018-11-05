@@ -2,20 +2,19 @@ package martakonik.flashcards.boxList
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
-import martakonik.flashcards.Database
-import martakonik.flashcards.flashcardsList.FlashcardsListViewModel
+import martakonik.flashcards.utils.Navigator
 
 class BoxListViewModel(
-        database: Database,
         @get: Bindable
-        val adapter: BoxListAdapter?
+        val adapter: BoxListAdapter?,
+        navigator: Navigator?
 ) : BaseObservable() {
-    private val choosenBox = { number: Int -> flascardsListViewModel.updateBox(number) }
+    private val choosenBox = { number: Int -> boxMenuViewModel.updateBox(number) }
 
     init {
         adapter?.choosenBox = choosenBox
     }
 
     @get: Bindable
-    val flascardsListViewModel = FlashcardsListViewModel(database)
+    val boxMenuViewModel = BoxMenuViewModel(navigator)
 }

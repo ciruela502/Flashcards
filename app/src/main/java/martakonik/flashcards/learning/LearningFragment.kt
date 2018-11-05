@@ -19,8 +19,10 @@ class LearningFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentLearningBinding.inflate(inflater, container, false)
-        val boxService = MockedBoxService(database)
-//        boxService.saveBox()
+
+        val boxId : Int = arguments?.getInt(BOX_ID) ?: 0
+        val boxService = MockedBoxService(database, boxId)
+
         learningViewModel = LearningViewModel(
                 childFragmentManager,
                 IncreaseStudyLevelUseCase(boxService, database),

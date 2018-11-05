@@ -25,22 +25,8 @@
             <android.support.v7.widget.Toolbar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:navigationIcon="@drawable/ic_arrow_back_white_24dp">
-
-                <EditText
-                    android:id="@+id/boxSpinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:hint="@string/box_name"
-                    app:layout_constraintBottom_toBottomOf="@+id/appBarLayout"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.25"
-                    app:layout_constraintStart_toStartOf="@+id/appBarLayout"
-                    app:layout_constraintTop_toTopOf="parent" />
+                app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
+                app:title="@{viewModel.boxName}">
             </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.AppBarLayout>

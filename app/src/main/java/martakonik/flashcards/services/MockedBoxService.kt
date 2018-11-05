@@ -7,13 +7,13 @@ import martakonik.flashcards.models.Flashcard
 import martakonik.flashcards.data.Box
 import martakonik.flashcards.data.PartOfBox
 
-class MockedBoxService(private val database: Database) : BoxService {
+class MockedBoxService(private val database: Database, boxId: Int) : BoxService {
 
-    override var box: Box? = getBoxFromDatabase()
+    override var box: Box? = getBoxFromDatabase(boxId)
 
-    fun getBoxFromDatabase(): Box? {
+    fun getBoxFromDatabase(boxId: Int): Box? {
 //        saveBox()
-        return database.getFlashcards()
+        return database.getFlashcards(boxId)
     }
 
     fun saveBox() {

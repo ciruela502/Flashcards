@@ -18,6 +18,7 @@ class BoxItemViewModel(
 
     fun onBoxClick(view: View) {
         //show fragment with chosen box
+        //todo wrap with menu object ?
         box.id?.let { choosenBox(it) }
         sheetBehavior?.state = BottomSheetBehavior.STATE_EXPANDED
     }

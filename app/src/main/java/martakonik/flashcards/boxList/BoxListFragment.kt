@@ -16,7 +16,7 @@ class BoxListFragment : BaseFragment() {
         binding = FragmentBoxListBinding.inflate(inflater, container, false)
         val sheetBehavior = BottomSheetBehavior.from(binding.flashcardList?.bottomsheet)
         val adapter = database.getBoxList()?.let { BoxListAdapter(it, sheetBehavior) }
-        binding.viewModel = BoxListViewModel(database, adapter)
+        binding.viewModel = BoxListViewModel(adapter, navigator)
 
         return binding.root
     }

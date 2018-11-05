@@ -20,7 +20,7 @@ class MainActivity : BaseActivity() {
         val learningFragment: Fragment = LearningFragment()
         showFragment(boxListFragment)
 
-        binding.viewModel = MainViewModel(navigator)
+        binding.viewModel = MainViewModel(this, database)
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -30,6 +30,7 @@ class MainActivity : BaseActivity() {
             true
         }
     }
+
     //todo move to vm
     private fun showFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commit()
