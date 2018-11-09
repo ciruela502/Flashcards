@@ -11,7 +11,8 @@ class AddFlashCardActivityViewModel(
         private val database: Database,
         private val snackbarHelper: SnackbarHelper,
         private val adapter: AddFlashcardAdapter,
-        private val boxId: Int) : BaseObservable() {
+        private val boxId: Int
+) : BaseObservable() {
 
     @get: Bindable
     val boxName = database.getBox(boxId)?.name ?: ""

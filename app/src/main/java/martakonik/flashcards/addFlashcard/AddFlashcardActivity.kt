@@ -14,11 +14,18 @@ class AddFlashcardActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         val binding = DataBindingUtil.setContentView<ActivityAddFlashcardBinding>(this, R.layout.activity_add_flashcard)
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val adapter = AddFlashcardAdapter(supportFragmentManager)
         val boxId = intent.getIntExtra(BOX_ID, 0)
         binding.addViewPager.adapter = adapter
         binding.viewModel = AddFlashCardActivityViewModel(database, SnackbarHelper(binding.root), adapter, boxId)
         binding.dots.setupWithViewPager(binding.addViewPager)
+    }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

@@ -14,4 +14,9 @@
         <item name="android:background">@color/colorPrimary</item>
         <item name="android:textColor">@color/colorWhite</item>
     </style>
+
+    <style name="Toolbar" parent="Base.Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="titleTextColor">@color/colorWhite</item>
+    </style>
 </resources>

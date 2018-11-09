@@ -23,11 +23,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <android.support.v7.widget.Toolbar
-                android:layout_width="wrap_content"
+                android:id="@+id/toolbar"
+                style="@style/Toolbar"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
-                app:title="@{viewModel.boxName}">
-            </android.support.v7.widget.Toolbar>
+                app:title="@{viewModel.boxName}" />
 
         </android.support.design.widget.AppBarLayout>
 
@@ -44,7 +45,6 @@
 
         <android.support.design.widget.TabLayout
             android:id="@+id/dots"
-            tools:background="@drawable/dot_selected"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginBottom="60dp"
@@ -53,11 +53,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:tabBackground="@drawable/dots_selector"
             app:tabGravity="center"
-            app:tabIndicatorHeight="0dp" />
+            app:tabIndicatorHeight="0dp"
+            tools:background="@drawable/dot_selected" />
 
         <Button
-            style="@style/ButtonBorderless"
             android:id="@+id/button"
+            style="@style/ButtonBorderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

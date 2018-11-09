@@ -29,10 +29,6 @@ class LearningViewModel(
     @get: Bindable
     var frontVisible = View.VISIBLE
 
-
-    @get: Bindable
-    var boxPartNumberText = boxPartNumber.toString()
-
     init {
         flipCard(null)
     }
