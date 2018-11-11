@@ -19,4 +19,7 @@
     <string name="dialog_hint">Enter new box name</string>
     <string name="dialog_title">Add new box</string>
     <string name="welcome_string">Add new box to see it here</string>
+    <string name="finish_title">Congratulations!</string>
+    <string name="finish_message">You have just finish learnig flashcards from this box.</string>
+    <string name="ok">ok</string>
 </resources>

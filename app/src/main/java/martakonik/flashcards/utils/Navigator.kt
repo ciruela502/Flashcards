@@ -1,31 +1,35 @@
 package martakonik.flashcards.utils
 
-import android.content.Context
+import android.app.Activity
 import android.content.Intent
 import martakonik.flashcards.addFlashcard.AddFlashcardActivity
 import martakonik.flashcards.flashcardsList.FlashcardListActivity
 import martakonik.flashcards.learning.LearningActivity
 
-class Navigator(private val context: Context) {
+class Navigator(private val activity: Activity) {
 
     fun openAddFlashcardActivity(boxId: Int) {
-        val intent = Intent(context, AddFlashcardActivity::class.java).apply {
+        val intent = Intent(activity, AddFlashcardActivity::class.java).apply {
             putExtra("box_id", boxId)
         }
-        context.startActivity(intent)
+        activity.startActivity(intent)
     }
 
     fun openLearningActivity(boxId: Int) {
-        val intent = Intent(context, LearningActivity::class.java).apply {
+        val intent = Intent(activity, LearningActivity::class.java).apply {
             putExtra("box_id", boxId)
         }
-        context.startActivity(intent)
+        activity.startActivity(intent)
     }
 
     fun openFlashcardListActivity(boxId: Int) {
-        val intent = Intent(context, FlashcardListActivity::class.java).apply {
+        val intent = Intent(activity, FlashcardListActivity::class.java).apply {
             putExtra("box_id", boxId)
         }
-        context.startActivity(intent)
+        activity.startActivity(intent)
+    }
+
+    fun finishCurrentActivity() {
+        activity.finish()
     }
 }

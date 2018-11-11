@@ -10,6 +10,7 @@ import martakonik.flashcards.GetNextCardUseCase
 import martakonik.flashcards.IncreaseStudyLevelUseCase
 import martakonik.flashcards.databinding.FragmentLearningBinding
 import martakonik.flashcards.services.MockedBoxService
+import martakonik.flashcards.utils.ShowDialog
 
 const val CARD = "card"
 
@@ -27,7 +28,9 @@ class LearningFragment : BaseFragment() {
                 childFragmentManager,
                 IncreaseStudyLevelUseCase(boxService, database),
                 DecreaseStudyLevelUseCase(boxService, database),
-                GetNextCardUseCase(boxService))
+                GetNextCardUseCase(boxService),
+                ShowDialog(context),
+                navigator)
         binding.viewModel = learningViewModel
 
         return binding.root

@@ -8,7 +8,7 @@ class GetNextCardUseCase(var boxService: BoxService) : UseCase<Void, Flashcard> 
 
     var previousCardId = -1
 
-    override fun execute(arg: Void?): Flashcard {
+    override fun execute(arg: Void?): Flashcard? {
         val box = boxService.box
         val partOfBoxes = box?.partOfBoxes
         partOfBoxes?.let {
@@ -25,6 +25,6 @@ class GetNextCardUseCase(var boxService: BoxService) : UseCase<Void, Flashcard> 
                 }
             }
         }
-        throw IllegalStateException("no more flashcards")
+        return null
     }
 }

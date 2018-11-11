@@ -15,7 +15,7 @@ open class BaseFragment : Fragment() {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         database = Database(Realm.getDefaultInstance())
-        navigator = context?.let { Navigator(it) }
+        navigator = Navigator(requireActivity())
     }
 
     override fun onDestroy() {
