@@ -4,13 +4,15 @@ import android.databinding.BaseObservable
 import android.databinding.Bindable
 import android.support.constraint.ConstraintLayout
 import android.support.design.widget.BottomSheetBehavior
+import martakonik.flashcards.Database
 import martakonik.flashcards.utils.Navigator
 
 class BoxListViewModel(
         @get: Bindable
         val adapter: BoxListAdapter?,
         navigator: Navigator?,
-        sheetBehavior: BottomSheetBehavior<ConstraintLayout?>
+        sheetBehavior: BottomSheetBehavior<ConstraintLayout?>,
+        database: Database
 ) : BaseObservable() {
     private val choosenBox = { number: Int -> boxMenuViewModel.updateBox(number) }
 
@@ -19,5 +21,5 @@ class BoxListViewModel(
     }
 
     @get: Bindable
-    val boxMenuViewModel = BoxMenuViewModel(navigator, sheetBehavior)
+    val boxMenuViewModel = BoxMenuViewModel(navigator, sheetBehavior, database)
 }
