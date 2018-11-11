@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="martakonik.flashcards.addFlashcard.AddFlashCardActivityViewModel" />
+            type="martakonik.flashcards.editFlashcards.EditFlashcardViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
