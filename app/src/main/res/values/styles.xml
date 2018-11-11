@@ -19,4 +19,10 @@
         <item name="android:background">@color/colorPrimary</item>
         <item name="titleTextColor">@color/colorWhite</item>
     </style>
+    <style name="Text"></style>
+
+    <style name="Text.Flashcard">
+        <item name="android:textSize">32sp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
 </resources>

@@ -20,7 +20,7 @@ class MainActivity : BaseActivity() {
         val learningFragment: Fragment = LearningFragment()
         showFragment(boxListFragment)
 
-        binding.viewModel = MainViewModel(this, database)
+        binding.viewModel = MainViewModel(this, database, resources)
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {

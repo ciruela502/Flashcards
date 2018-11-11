@@ -16,49 +16,52 @@
         <FrameLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="64dp"
             android:onClick="@{viewModel::flipCard}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <ImageButton
             android:id="@+id/show"
+            style="@style/ButtonBorderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="64dp"
+            android:background="@color/colorWhite"
             android:onClick="@{viewModel.flipCard}"
-            android:text="@string/back"
+            android:src="@drawable/ic_flip_black_24dp"
             android:visibility="@{viewModel.frontVisible}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/container" />
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
+        <ImageButton
             android:id="@+id/ok"
+            style="@style/ButtonBorderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="64dp"
+            android:background="@color/colorWhite"
             android:onClick="@{viewModel.onLearnedClick}"
-            android:text="@string/ok"
+            android:src="@drawable/ic_done_black_24dp"
             android:visibility="@{viewModel.backVisible}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/not"
-            app:layout_constraintTop_toBottomOf="@+id/container" />
+            app:layout_constraintStart_toEndOf="@+id/not" />
 
-        <Button
+        <ImageButton
             android:id="@+id/not"
+            style="@style/ButtonBorderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:background="@color/colorWhite"
             android:onClick="@{viewModel.onNotLearned}"
-            android:text="@string/not_ok"
+            android:src="@drawable/ic_close_black_24dp"
             android:visibility="@{viewModel.backVisible}"
             app:layout_constraintBottom_toBottomOf="@+id/ok"
             app:layout_constraintEnd_toStartOf="@+id/ok"

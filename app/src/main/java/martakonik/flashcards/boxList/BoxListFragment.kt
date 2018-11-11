@@ -14,9 +14,10 @@ class BoxListFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentBoxListBinding.inflate(inflater, container, false)
+        //todo change this to manager
         val sheetBehavior = BottomSheetBehavior.from(binding.flashcardList?.bottomsheet)
         val adapter = database.getBoxList()?.let { BoxListAdapter(it, sheetBehavior) }
-        binding.viewModel = BoxListViewModel(adapter, navigator)
+        binding.viewModel = BoxListViewModel(adapter, navigator, sheetBehavior)
 
         return binding.root
     }

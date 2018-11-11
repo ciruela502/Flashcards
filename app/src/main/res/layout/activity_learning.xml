@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="viewModel"
             type="martakonik.flashcards.learning.LearningActivityViewModel" />
@@ -21,13 +22,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <android.support.v7.widget.Toolbar
-                style="@style/Toolbar"
                 android:id="@+id/toolbar"
+                style="@style/Toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
-                app:title="@{viewModel.boxName}"
-            />
+                app:title="@{viewModel.boxName}" />
 
         </android.support.design.widget.AppBarLayout>
 
