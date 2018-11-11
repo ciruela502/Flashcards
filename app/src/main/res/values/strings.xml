@@ -18,4 +18,5 @@
     <string name="add_flashcards">Add flashcards</string>
     <string name="dialog_hint">Enter new box name</string>
     <string name="dialog_title">Add new box</string>
+    <string name="welcome_string">Add new box to see it here</string>
 </resources>

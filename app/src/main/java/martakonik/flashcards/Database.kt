@@ -1,5 +1,6 @@
 package martakonik.flashcards
 
+import io.reactivex.Flowable
 import io.realm.Realm
 import io.realm.RealmModel
 import io.realm.RealmResults
@@ -22,8 +23,8 @@ class Database(private val realm: Realm) {
     fun getFlashcardsListByBoxId(boxId: Int): RealmResults<Flashcard>? {
         return realm.where(Flashcard::class.java).equalTo("boxId", boxId).findAll()
     }
-    fun getBoxList(): RealmResults<Box>? {
-        return realm.where(Box::class.java).findAll()
+    fun getBoxList(): Flowable<RealmResults<Box>> {
+        return realm.where(Box::class.java).findAll().asFlowable()
     }
     fun <T: RealmModel> getCopiedObject(realmObject: T?): T? {
         return realm.copyFromRealm(realmObject)

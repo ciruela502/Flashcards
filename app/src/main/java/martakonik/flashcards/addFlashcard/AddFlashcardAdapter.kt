@@ -18,7 +18,6 @@ class AddFlashcardAdapter(fm: FragmentManager?) : FragmentStatePagerAdapter(fm) 
         return when (position) {
             0 -> frontFragment
             else -> backFragment
-            //todo 3th screen flashcard preview ?
         }
     }
 

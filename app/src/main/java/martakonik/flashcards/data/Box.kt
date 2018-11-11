@@ -10,3 +10,10 @@ open class Box : RealmObject() {
     var name: String = ""
     var partOfBoxes: RealmList<PartOfBox> = RealmList()
 }
+fun Box?.notEmpty(): Boolean {
+    this?.partOfBoxes?.forEach {
+        if (it.flashcards.isNotEmpty() )
+            return true
+    }
+    return false
+}

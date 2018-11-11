@@ -2,24 +2,21 @@ package martakonik.flashcards.boxList
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
-import android.support.constraint.ConstraintLayout
-import android.support.design.widget.BottomSheetBehavior
 import android.view.View
 import martakonik.flashcards.data.Box
+import martakonik.flashcards.utils.BottomMenuManager
 
 class BoxItemViewModel(
         @get: Bindable
         val box: Box,
-        private val sheetBehavior: BottomSheetBehavior<ConstraintLayout?>?,
-        private val choosenBox: (Int) -> Any
+        private val bottomMenu: BottomMenuManager,
+        private val chooseBox: (Int) -> Any
 ) : BaseObservable() {
     @get: Bindable
     val boxName = box.name
 
     fun onBoxClick(view: View) {
-        //show fragment with chosen box
-        //todo wrap with menu object ?
-        box.id?.let { choosenBox(it) }
-        sheetBehavior?.state = BottomSheetBehavior.STATE_EXPANDED
+        box.id?.let { chooseBox(it) }
+        bottomMenu.show()
     }
 }

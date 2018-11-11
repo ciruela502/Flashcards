@@ -1,37 +1,39 @@
 package martakonik.flashcards.mainScreen
 
-import android.app.AlertDialog
-import android.content.Context
-import android.content.res.Resources
+import android.support.design.widget.BottomNavigationView
+import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
 import android.view.View
-import android.widget.EditText
-import martakonik.flashcards.Database
 import martakonik.flashcards.R
-import martakonik.flashcards.data.Box
+import martakonik.flashcards.boxList.BoxListFragment
+import martakonik.flashcards.learning.LearningFragment
 
 
 class MainViewModel(
-        private val context: Context,
-        private val database: Database,
-        private val resources: Resources
+        private val addBoxDialog: AddBoxDialog,
+        private val supportFragmentManager: FragmentManager
 ) {
+    private val boxListFragment: Fragment = BoxListFragment()
+    private val learningFragment: Fragment = LearningFragment()
 
-    //todo extract to DialogManager
+    init {
+        showFragment(boxListFragment)
+    }
+
     fun onAddClick(view: View) {
-        val alert = AlertDialog.Builder(context)
-        val edittext = EditText(context)
-        edittext.hint = resources.getString(R.string.dialog_hint)
-        alert.setTitle(resources.getString(R.string.dialog_title))
+        addBoxDialog.show()
+    }
 
-        alert.setView(edittext)
-        alert.setCancelable(true)
-        alert.setPositiveButton(resources.getString(R.string.save)) { _, _ ->
-            val boxName = edittext.text.toString()
-            val box = Box().apply {
-                name = boxName
-            }
-            database.addBox(box)
+    val navigationListener = BottomNavigationView.OnNavigationItemSelectedListener{ item ->
+        when (item.itemId) {
+            R.id.flashcard_list -> showFragment(boxListFragment)
+            R.id.learning -> showFragment(learningFragment)
         }
-        alert.show()
+        true
+    }
+
+    private fun showFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commit()
     }
 }
