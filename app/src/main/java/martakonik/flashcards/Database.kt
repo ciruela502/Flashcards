@@ -24,10 +24,12 @@ class Database(private val realm: Realm) {
     fun getFlashcardsListByBoxId(boxId: Int): RealmResults<Flashcard>? {
         return realm.where(Flashcard::class.java).equalTo("boxId", boxId).findAll()
     }
+
     fun getBoxList(): Flowable<RealmResults<Box>> {
         return realm.where(Box::class.java).findAll().asFlowable()
     }
-    fun <T: RealmModel> getCopiedObject(realmObject: T?): T? {
+
+    fun <T : RealmModel> getCopiedObject(realmObject: T?): T? {
         return realm.copyFromRealm(realmObject)
     }
 
@@ -39,7 +41,7 @@ class Database(private val realm: Realm) {
     }
 
     fun addFlashcard(flashcard: Flashcard, boxId: Int) {
-        realm.executeTransaction {realm ->
+        realm.executeTransaction { realm ->
             val box = getBox(boxId)
 
             flashcard.id = getNextFlashcardId(realm)
@@ -84,5 +86,16 @@ class Database(private val realm: Realm) {
 
     fun getBox(boxId: Int): Box? {
         return realm.where(Box::class.java).equalTo("id", boxId).findFirst()
+    }
+
+    fun getFlashcard(flashcardId: Int): Flashcard? {
+        return realm.where(Flashcard::class.java).equalTo("id", flashcardId).findFirst()
+    }
+
+    fun deleteFlashcard(flashcardId: Int) {
+        realm.executeTransaction {
+            val flashcard = realm.where(Flashcard::class.java).equalTo("id", flashcardId).findFirst()
+            flashcard?.deleteFromRealm()
+        }
     }
 }

@@ -6,6 +6,9 @@ import martakonik.flashcards.BaseActivity
 import martakonik.flashcards.R
 import martakonik.flashcards.databinding.ActivityFlashcardsListBinding
 import martakonik.flashcards.learning.BOX_ID
+import android.support.v7.widget.DividerItemDecoration
+
+
 
 class FlashcardListActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,9 +18,9 @@ class FlashcardListActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val boxId = intent.getIntExtra(BOX_ID, 0)
-        val adapter = database.getFlashcardsListByBoxId(boxId)?.let { WordsListAdapter(it) }
-
-        binding.viewModel = FlashcardsListViewModel(adapter, database, boxId)
+        val adapter = database.getFlashcardsListByBoxId(boxId)?.let { WordsListAdapter(it, navigator) }
+        val decoration = DividerItemDecoration(applicationContext, DividerItemDecoration.VERTICAL)
+        binding.viewModel = FlashcardsListViewModel(adapter, database, boxId, decoration)
     }
 
     override fun onSupportNavigateUp(): Boolean {

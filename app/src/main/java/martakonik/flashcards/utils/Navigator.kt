@@ -3,6 +3,7 @@ package martakonik.flashcards.utils
 import android.app.Activity
 import android.content.Intent
 import martakonik.flashcards.addFlashcard.AddFlashcardActivity
+import martakonik.flashcards.editFlashcards.EditFlashcardActivity
 import martakonik.flashcards.flashcardsList.FlashcardListActivity
 import martakonik.flashcards.learning.LearningActivity
 
@@ -31,5 +32,12 @@ class Navigator(private val activity: Activity) {
 
     fun finishCurrentActivity() {
         activity.finish()
+    }
+
+    fun openEditActivity(flashcardId: Int) {
+        val intent = Intent(activity, EditFlashcardActivity::class.java).apply {
+            putExtra("flashcard_id", flashcardId)
+        }
+        activity.startActivity(intent)
     }
 }

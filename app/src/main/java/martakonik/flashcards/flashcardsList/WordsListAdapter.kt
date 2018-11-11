@@ -8,9 +8,11 @@ import io.realm.OrderedRealmCollection
 import io.realm.RealmRecyclerViewAdapter
 import martakonik.flashcards.databinding.FlashcardListRowBinding
 import martakonik.flashcards.models.Flashcard
+import martakonik.flashcards.utils.Navigator
 
 class WordsListAdapter(
-        data: OrderedRealmCollection<Flashcard>
+        data: OrderedRealmCollection<Flashcard>,
+        private val navigator: Navigator
 ) : RealmRecyclerViewAdapter<Flashcard, WordsListAdapter.ViewHolder>(data, true) {
 
     init {
@@ -24,7 +26,7 @@ class WordsListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.apply {
-            viewModel = ListViewModel(getItem(position))
+            viewModel = ListViewModel(getItem(position), navigator)
             executePendingBindings()
         }
     }

@@ -2,14 +2,17 @@ package martakonik.flashcards.flashcardsList
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
+import android.support.v7.widget.DividerItemDecoration
 import martakonik.flashcards.Database
 
 class FlashcardsListViewModel(
         @get: Bindable
         val adapter: WordsListAdapter?,
-        private val database: Database,
-        private val boxId: Int) : BaseObservable() {
-
+        database: Database,
+        boxId: Int,
         @get: Bindable
-        val boxName = database.getBox(boxId)?.name ?: ""
+        val decoration: DividerItemDecoration) : BaseObservable() {
+
+    @get: Bindable
+    val boxName = database.getBox(boxId)?.name ?: ""
 }

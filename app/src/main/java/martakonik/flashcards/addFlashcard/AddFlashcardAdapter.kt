@@ -7,10 +7,11 @@ import kotlinx.android.synthetic.main.fragment_add_flashcard_back.*
 import kotlinx.android.synthetic.main.fragment_add_flashcard_front.*
 import martakonik.flashcards.models.Flashcard
 
-class AddFlashcardAdapter(fm: FragmentManager?) : FragmentStatePagerAdapter(fm) {
+const val NON_EXISTING_ID = -1
+class AddFlashcardAdapter(fm: FragmentManager?, flashcardId: Int = NON_EXISTING_ID) : FragmentStatePagerAdapter(fm) {
 
-    private val frontFragment = AddFlashcardFragmentFront()
-    private val backFragment = AddFlashcardFragmentBack()
+    private val frontFragment = AddFlashcardFragmentFront.create(flashcardId)
+    private val backFragment = AddFlashcardFragmentBack.create(flashcardId)
 
     override fun getCount(): Int = 2
 
