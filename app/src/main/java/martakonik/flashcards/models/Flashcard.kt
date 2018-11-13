@@ -12,6 +12,7 @@ open class Flashcard() : RealmObject(), Parcelable {
     var boxId: Int = 0
     var word = ""
     var translation = ""
+    var learnt = false
 
     constructor(word: String, translation: String, id: Int, boxId: Int) : this() {
         this.word = word

@@ -8,7 +8,7 @@ open class Box : RealmObject() {
     @PrimaryKey
     var id: Int? = null
     var name: String = ""
-    var partOfBoxes: RealmList<PartOfBox> = RealmList()
+    var partOfBoxes: RealmList<PartOfBox> = RealmList(PartOfBox(), PartOfBox(), PartOfBox(), PartOfBox(), PartOfBox())
 }
 fun Box?.notEmpty(): Boolean {
     this?.partOfBoxes?.forEach {

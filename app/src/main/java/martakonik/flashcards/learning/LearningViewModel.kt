@@ -11,22 +11,17 @@ import martakonik.flashcards.GetNextCardUseCase
 import martakonik.flashcards.IncreaseStudyLevelUseCase
 import martakonik.flashcards.R
 import martakonik.flashcards.models.Flashcard
-import martakonik.flashcards.utils.Navigator
-import martakonik.flashcards.utils.ShowDialog
 
 //todo why var ?
 class LearningViewModel(
         private var childFragmentManager: FragmentManager,
         private var increaseStudyLevel: IncreaseStudyLevelUseCase,
         private var decreaseStudyLevel: DecreaseStudyLevelUseCase,
-        private var nextCard: GetNextCardUseCase,
-        private var showDialog: ShowDialog,
-        private var navigator: Navigator?
+        private var nextCard: GetNextCardUseCase
 ) : BaseObservable() {
     private var index = 0
     private var showingBack = true
     private var flashcard: Flashcard = Flashcard()
-    private val close = { navigator?.finishCurrentActivity() }
 
     @get: Bindable
     var backVisible = View.GONE
@@ -56,18 +51,12 @@ class LearningViewModel(
 
     private fun showFront(index: Int) {
         val nextFlashcard = nextCard.execute(null)
-        if (nextFlashcard == null) {
-            finishLearning()
-        } else {
+        nextFlashcard?.let {
             flashcard = nextFlashcard
             showingBack = false
             val front = FrontCardFragment()
             showFragment(front)
         }
-    }
-
-    private fun finishLearning() {
-        showDialog.show(R.string.finish_title, R.string.finish_message, R.string.ok, close)
     }
 
     private fun showFragment(fragment: Fragment) {

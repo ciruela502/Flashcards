@@ -10,7 +10,7 @@ class IncreaseStudyLevelUseCase(private var boxService: BoxService?,
 
     override fun execute(arg: Flashcard): Void? {
         var i = 0
-        var boxNum = 0
+        var partOfBoxNum = 0
 
         val copiedBox: Box? = database.getCopiedObject(boxService?.box)
         val partOfBoxes = copiedBox?.partOfBoxes
@@ -23,8 +23,12 @@ class IncreaseStudyLevelUseCase(private var boxService: BoxService?,
                     if (!flashcards.isEmpty()) {
                         for (flashcard in flashcards) {
                             if (flashcard == arg) {
-                                flashcards.remove(flashcard)
-                                boxNum = i
+                                if (i < partOfBoxes.size - 1 ) {
+                                    flashcards.remove(flashcard)
+                                } else {
+                                    flashcard.learnt = true
+                                }
+                                partOfBoxNum = i
                                 break
                             }
                         }
@@ -33,8 +37,8 @@ class IncreaseStudyLevelUseCase(private var boxService: BoxService?,
                 i++
             }
 
-            if (boxNum < partOfBoxes.size - 1) {
-                copiedBox.partOfBoxes?.get(++boxNum)?.flashcards?.add(arg)
+            if (partOfBoxNum < partOfBoxes.size - 1) {
+                copiedBox.partOfBoxes.get(++partOfBoxNum)?.flashcards?.add(arg)
             }
 
             database.updateBoxService(boxService, copiedBox)
