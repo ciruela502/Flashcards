@@ -2,6 +2,7 @@ package martakonik.flashcards.utils
 
 import android.databinding.BindingAdapter
 import android.support.design.widget.BottomNavigationView
+import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -19,4 +20,9 @@ fun BottomNavigationView.bindListener(listener: BottomNavigationView.OnNavigatio
 @BindingAdapter("itemDecoration")
 fun RecyclerView.addItemDecoration(decoration: DividerItemDecoration) {
     addItemDecoration(decoration)
+}
+
+@BindingAdapter("app:state")
+fun FloatingActionButton.changeState(state: Boolean) {
+    if (state) show() else hide()
 }

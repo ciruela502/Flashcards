@@ -10,7 +10,8 @@ class BoxItemViewModel(
         @get: Bindable
         val box: Box,
         private val bottomMenu: BottomMenuManager,
-        private val chooseBox: (Int) -> Any
+        private val chooseBox: (Int) -> Any,
+        private val manage: (Boolean) -> Unit
 ) : BaseObservable() {
     @get: Bindable
     val boxName = box.name
@@ -18,5 +19,6 @@ class BoxItemViewModel(
     fun onBoxClick(view: View) {
         box.id?.let { chooseBox(it) }
         bottomMenu.show()
+        manage(false)
     }
 }

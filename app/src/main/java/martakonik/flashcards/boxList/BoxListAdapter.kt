@@ -11,7 +11,8 @@ import martakonik.flashcards.utils.BottomMenuManager
 
 class BoxListAdapter(
         data: RealmResults<Box>,
-        private val bottomMenu: BottomMenuManager
+        private val bottomMenu: BottomMenuManager,
+        private val manage: (Boolean) -> Unit
 ) : RealmRecyclerViewAdapter<Box, BoxListAdapter.ViewHolder>(data, true) {
     lateinit var chooseBox: (Int) -> Any
 
@@ -26,7 +27,7 @@ class BoxListAdapter(
 
     override fun onBindViewHolder(holder: BoxListAdapter.ViewHolder, position: Int) {
         holder.binding.apply {
-            viewModel = getItem(position)?.let { BoxItemViewModel(it, bottomMenu, chooseBox) }
+            viewModel = getItem(position)?.let { BoxItemViewModel(it, bottomMenu, chooseBox, manage) }
             executePendingBindings()
         }
     }

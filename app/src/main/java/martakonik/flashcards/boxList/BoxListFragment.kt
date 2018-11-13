@@ -11,13 +11,14 @@ import martakonik.flashcards.databinding.FragmentBoxListBinding
 import martakonik.flashcards.utils.BottomMenuManager
 
 class BoxListFragment : BaseFragment() {
+    lateinit var manage: (Boolean) -> Unit
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentBoxListBinding.inflate(inflater, container, false)
         val bottomMenu = BottomMenuManager(BottomSheetBehavior.from(binding.flashcardList?.bottomsheet))
         database.getBoxList().subscribe {
-            val adapter = BoxListAdapter(it, bottomMenu)
-            binding.viewModel = BoxListViewModel(adapter, navigator, bottomMenu, database)
+            val adapter = BoxListAdapter(it, bottomMenu, manage)
+            binding.viewModel = BoxListViewModel(adapter, navigator, bottomMenu, database, manage)
         }.addTo(compositeDisposable)
 
         return binding.root

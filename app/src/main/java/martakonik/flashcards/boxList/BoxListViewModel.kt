@@ -17,7 +17,8 @@ class BoxListViewModel(
         val adapter: BoxListAdapter?,
         navigator: Navigator?,
         bottomMenu: BottomMenuManager,
-        database: Database
+        database: Database,
+        manage: (Boolean) -> Unit
 ) : BaseObservable(), LifecycleObserver {
     private val chooseBox = { number: Int -> boxMenuViewModel.updateBox(number) }
     private val compositeDisposable = CompositeDisposable()
@@ -42,7 +43,7 @@ class BoxListViewModel(
         get() = !boxExist
 
     @get: Bindable
-    val boxMenuViewModel = BoxMenuViewModel(navigator, bottomMenu, database)
+    val boxMenuViewModel = BoxMenuViewModel(navigator, bottomMenu, database, manage)
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun clear() {
