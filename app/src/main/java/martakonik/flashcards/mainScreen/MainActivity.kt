@@ -12,6 +12,7 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        setSupportActionBar(binding.toolbar)
 
         val addBoxDialog = AddBoxDialog(this, database)
         binding.viewModel = MainViewModel(addBoxDialog, supportFragmentManager)
