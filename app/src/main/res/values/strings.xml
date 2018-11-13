@@ -3,9 +3,9 @@
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="back">Back</string>
     <string name="front">Front</string>
-    <string name="save">Save</string>
+    <string name="add">Add</string>
     <string name="add_flashcard_succes_message">Successfully add new flashcard</string>
-    <string name="add_new_box">Add new box</string>
+    <string name="new_box_name">New box name</string>
     <string name="add_flascard_to_existing_box">Add flascard to existing box</string>
     <string name="box">Box</string>
     <string name="next">Next</string>
