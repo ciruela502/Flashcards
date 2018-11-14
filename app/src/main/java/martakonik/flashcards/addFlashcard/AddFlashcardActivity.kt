@@ -5,7 +5,7 @@ import android.os.Bundle
 import martakonik.flashcards.BaseActivity
 import martakonik.flashcards.R
 import martakonik.flashcards.databinding.ActivityAddFlashcardBinding
-import martakonik.flashcards.learning.BOX_ID
+import martakonik.flashcards.utils.BOX_ID
 import martakonik.flashcards.utils.SnackbarHelper
 
 class AddFlashcardActivity : BaseActivity() {

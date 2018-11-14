@@ -21,8 +21,3 @@ fun BottomNavigationView.bindListener(listener: BottomNavigationView.OnNavigatio
 fun RecyclerView.addItemDecoration(decoration: DividerItemDecoration) {
     addItemDecoration(decoration)
 }
-
-@BindingAdapter("app:state")
-fun FloatingActionButton.changeState(state: Boolean) {
-    if (state) show() else hide()
-}

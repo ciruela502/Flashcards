@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import martakonik.flashcards.*
 import martakonik.flashcards.databinding.FragmentLearningBinding
 import martakonik.flashcards.services.MockedBoxService
+import martakonik.flashcards.utils.BOX_ID
 import martakonik.flashcards.utils.ShowDialog
 
 const val CARD = "card"

@@ -1,5 +1,6 @@
 package martakonik.flashcards.boxList
 
+import android.support.v4.app.FragmentManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,14 +8,11 @@ import io.realm.RealmRecyclerViewAdapter
 import io.realm.RealmResults
 import martakonik.flashcards.data.Box
 import martakonik.flashcards.databinding.BoxListItemBinding
-import martakonik.flashcards.utils.BottomMenuManager
 
 class BoxListAdapter(
         data: RealmResults<Box>,
-        private val bottomMenu: BottomMenuManager,
-        private val manage: (Boolean) -> Unit
+        private val supportFragmentManager: FragmentManager
 ) : RealmRecyclerViewAdapter<Box, BoxListAdapter.ViewHolder>(data, true) {
-    lateinit var chooseBox: (Int) -> Any
 
     init {
         setHasStableIds(true)
@@ -27,7 +25,7 @@ class BoxListAdapter(
 
     override fun onBindViewHolder(holder: BoxListAdapter.ViewHolder, position: Int) {
         holder.binding.apply {
-            viewModel = getItem(position)?.let { BoxItemViewModel(it, bottomMenu, chooseBox, manage) }
+            viewModel = getItem(position)?.let { BoxItemViewModel(it, supportFragmentManager) }
             executePendingBindings()
         }
     }

@@ -1,37 +1,50 @@
 package martakonik.flashcards.mainScreen
 
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.OnLifecycleEvent
 import android.databinding.BaseObservable
 import android.databinding.Bindable
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
 import android.view.View
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
 import martakonik.flashcards.BR
-import martakonik.flashcards.R
-import martakonik.flashcards.boxList.BoxListFragment
+import martakonik.flashcards.Database
+import martakonik.flashcards.boxList.BoxListAdapter
 
 
 class MainViewModel(
         private val addBoxDialog: AddBoxDialog,
-        supportFragmentManager: FragmentManager
+        @get: Bindable
+        val adapter: BoxListAdapter,
+        database: Database
 ) : BaseObservable() {
-    private val manageFloatingButton = { state: Boolean -> changeFloatingState(state)}
-    private val boxListFragment: Fragment = BoxListFragment().apply {
-        manage = manageFloatingButton
-    }
-
-    @get: Bindable
-    var floatingState = true
-
-    init {
-        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, boxListFragment).commit()
-    }
 
     fun onAddClick(view: View) {
         addBoxDialog.show()
     }
 
-    private fun changeFloatingState(state: Boolean) {
-       floatingState = state
-        notifyPropertyChanged(BR.floatingState)
+    private val compositeDisposable = CompositeDisposable()
+
+    init {
+        database.getBoxList().subscribe {
+            boxExist = it.size > 0
+            notifyPropertyChanged(BR.boxExist)
+        }?.addTo(compositeDisposable)
+    }
+
+    @Bindable
+    var boxExist = false
+
+    @get: Bindable("boxExist")
+    var listVisible = false
+        get() = boxExist
+
+    @get: Bindable("boxExist")
+    var messageVisible = true
+        get() = !boxExist
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    fun clear() {
+        compositeDisposable.clear()
     }
 }

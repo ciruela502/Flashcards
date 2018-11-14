@@ -9,62 +9,59 @@
             type="martakonik.flashcards.boxList.BoxMenuViewModel" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:id="@+id/bottomsheet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#00FFFFFF"
+        android:divider="?android:attr/dividerVertical"
+        android:gravity="bottom"
         android:onClick="@{viewModel::outsideClick}"
+        android:orientation="vertical"
+        android:showDividers="middle"
         app:behavior_hideable="true"
         app:behavior_peekHeight="0dp"
-        app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+        <TextView
+            android:id="@+id/boxName"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:gravity="center"
+            android:text="@{viewModel.boxName}"
+            android:textAllCaps="true"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/textViewLearning"
             android:layout_width="match_parent"
             android:layout_height="62dp"
-            android:background="@drawable/boarder_grey"
             android:gravity="center"
             android:onClick="@{viewModel::onLearningClick}"
             android:text="@string/learning"
             android:textAllCaps="true"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/textViewShow"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:visibility_value="@{viewModel.flashcardOptionVisible}" />
 
         <TextView
             android:id="@+id/textViewShow"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@drawable/boarder_grey"
             android:gravity="center"
             android:onClick="@{viewModel::onShowFlashcardsClick}"
             android:text="@string/show_flashcards"
             android:textAllCaps="true"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/textViewAdd"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:visibility_value="@{viewModel.flashcardOptionVisible}" />
 
         <TextView
             android:id="@+id/textViewAdd"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@drawable/boarder_grey"
             android:gravity="center"
             android:onClick="@{viewModel::onAddFlashcardsClick}"
             android:text="@string/add_flashcards"
             android:textAllCaps="true"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </android.support.constraint.ConstraintLayout>
-
+            android:textSize="16sp" />
+    </LinearLayout>
 </layout>

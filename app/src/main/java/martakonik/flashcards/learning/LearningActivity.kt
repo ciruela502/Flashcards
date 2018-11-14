@@ -5,8 +5,8 @@ import android.os.Bundle
 import martakonik.flashcards.BaseActivity
 import martakonik.flashcards.R
 import martakonik.flashcards.databinding.ActivityLearningBinding
+import martakonik.flashcards.utils.BOX_ID
 
-const val BOX_ID = "box_id"
 
 class LearningActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

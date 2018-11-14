@@ -5,9 +5,8 @@ import android.os.Bundle
 import martakonik.flashcards.BaseActivity
 import martakonik.flashcards.R
 import martakonik.flashcards.databinding.ActivityFlashcardsListBinding
-import martakonik.flashcards.learning.BOX_ID
 import android.support.v7.widget.DividerItemDecoration
-
+import martakonik.flashcards.utils.BOX_ID
 
 
 class FlashcardListActivity : BaseActivity() {

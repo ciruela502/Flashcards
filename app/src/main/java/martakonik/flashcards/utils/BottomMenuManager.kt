@@ -1,15 +1,20 @@
 package martakonik.flashcards.utils
 
-import android.support.constraint.ConstraintLayout
-import android.support.design.widget.BottomSheetBehavior
+import android.support.v4.app.FragmentManager
+import martakonik.flashcards.boxList.BoxMenuDialog
 
-class BottomMenuManager(private val sheetBehavior: BottomSheetBehavior<ConstraintLayout?>) {
+class BottomMenuManager(
+        private val dialog: BoxMenuDialog,
+        private val fragmentManager: FragmentManager?
+) {
+
+    var boxId = -1
 
     fun show() {
-        sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        dialog.show(fragmentManager, "tag")
     }
 
     fun hide() {
-        sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        dialog.dismiss()
     }
 }
