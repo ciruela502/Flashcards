@@ -5,7 +5,6 @@ import io.realm.Realm
 import io.realm.RealmModel
 import io.realm.RealmResults
 import martakonik.flashcards.data.Box
-import martakonik.flashcards.data.PartOfBox
 import martakonik.flashcards.models.Flashcard
 import martakonik.flashcards.services.BoxService
 
@@ -46,12 +45,16 @@ class Database(private val realm: Realm) {
 
             flashcard.id = getNextFlashcardId(realm)
             box?.let {
-                if (it.partOfBoxes.isEmpty() || it.partOfBoxes[0] == null) {
-                    it.partOfBoxes.add(PartOfBox())
-                }
+                //todo add to current part not first?
                 it.partOfBoxes[0]?.flashcards?.add(flashcard)
                 realm.copyToRealmOrUpdate(box)
             }
+        }
+    }
+
+    fun editFlashcard(flashcard: Flashcard) {
+        realm.executeTransaction { realm ->
+                realm.copyToRealmOrUpdate(flashcard)
         }
     }
 

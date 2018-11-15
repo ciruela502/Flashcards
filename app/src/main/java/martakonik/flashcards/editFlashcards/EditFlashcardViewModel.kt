@@ -24,10 +24,12 @@ class EditFlashcardViewModel(
     fun saveFlashcard(view: View) {
         val flashcard = adapter.createFlashcardFromProvidedInfo().apply {
             this?.boxId = flashcard?.boxId ?: 0
+            this?.id = flashcard?.id ?: 0
         }
         if (flashcard != null) {
-            database.addFlashcard(flashcard, flashcard.boxId)
-            snackbarHelper.showSnackbar(R.string.add_flashcard_succes_message)
+            database.editFlashcard(flashcard)
+            navigator.finishCurrentActivity()
+            snackbarHelper.showSnackbar(R.string.edit_flashcard)
         } else {
             snackbarHelper.showSnackbar(R.string.empty_fields_message)
         }

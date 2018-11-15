@@ -13,7 +13,6 @@
         android:id="@+id/bottomsheet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/boarder_card_top"
         android:divider="@drawable/horizontal_divider"
         android:gravity="bottom"
         android:orientation="vertical"
