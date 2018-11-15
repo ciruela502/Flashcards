@@ -2,13 +2,15 @@ package martakonik.flashcards.flashcardsList
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
+import android.os.Bundle
+import android.support.v4.app.FragmentManager
 import android.view.View
+import martakonik.flashcards.editFlashcards.FLASHCARD_ID
 import martakonik.flashcards.models.Flashcard
-import martakonik.flashcards.utils.Navigator
 
 class ListViewModel(
         private val flashcard: Flashcard?,
-        private val navigator: Navigator
+        private val supportFragmentManager: FragmentManager
 ) : BaseObservable() {
 
     @get: Bindable
@@ -18,6 +20,12 @@ class ListViewModel(
     val word = flashcard?.word ?: ""
 
     fun openEdit(view: View) {
-        flashcard?.id?.let { navigator.openEditActivity(it) }
+        val args = Bundle().apply {
+            flashcard?.id?.let { putInt(FLASHCARD_ID, it) }
+        }
+        val bottomFragment = FlashcardListMenu().apply {
+            arguments = args
+        }
+        bottomFragment.show(supportFragmentManager, TAG_EDIT_MENU)
     }
 }

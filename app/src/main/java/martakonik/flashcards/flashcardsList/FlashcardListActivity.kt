@@ -17,9 +17,9 @@ class FlashcardListActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val boxId = intent.getIntExtra(BOX_ID, 0)
-        val adapter = database.getFlashcardsListByBoxId(boxId)?.let { WordsListAdapter(it, navigator) }
+        val adapter = database.getFlashcardsListByBoxId(boxId)?.let { WordsListAdapter(it, supportFragmentManager) }
         val decoration = DividerItemDecoration(applicationContext, DividerItemDecoration.VERTICAL)
-        binding.viewModel = FlashcardsListViewModel(adapter, database, boxId, decoration)
+        binding.viewModel = FlashcardsListViewModel(adapter, database, boxId, decoration, navigator)
     }
 
     override fun onSupportNavigateUp(): Boolean {
