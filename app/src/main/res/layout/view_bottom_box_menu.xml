@@ -12,25 +12,24 @@
     <LinearLayout
         android:id="@+id/bottomsheet"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#00FFFFFF"
-        android:divider="?android:attr/dividerVertical"
+        android:layout_height="wrap_content"
+        android:background="@drawable/boarder_card_top"
+        android:divider="@drawable/horizontal_divider"
         android:gravity="bottom"
-        android:onClick="@{viewModel::outsideClick}"
         android:orientation="vertical"
-        android:showDividers="middle"
-        app:behavior_hideable="true"
-        app:behavior_peekHeight="0dp"
-        app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+        android:showDividers="middle">
 
         <TextView
             android:id="@+id/boxName"
             android:layout_width="match_parent"
-            android:layout_height="62dp"
-            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:textColor="@color/colorPrimaryDark"
             android:text="@{viewModel.boxName}"
-            android:textAllCaps="true"
-            android:textSize="16sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/textViewLearning"
@@ -38,7 +37,7 @@
             android:layout_height="62dp"
             android:gravity="center"
             android:onClick="@{viewModel::onLearningClick}"
-            android:text="@string/learning"
+            android:text="@string/learn"
             android:textAllCaps="true"
             android:textSize="16sp"
             app:visibility_value="@{viewModel.flashcardOptionVisible}" />
@@ -49,7 +48,7 @@
             android:layout_height="60dp"
             android:gravity="center"
             android:onClick="@{viewModel::onShowFlashcardsClick}"
-            android:text="@string/show_flashcards"
+            android:text="@string/edit"
             android:textAllCaps="true"
             android:textSize="16sp"
             app:visibility_value="@{viewModel.flashcardOptionVisible}" />
