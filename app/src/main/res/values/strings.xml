@@ -25,4 +25,9 @@
     <string name="delete">delete</string>
     <string name="flashcard_delete">Flashcard successfully deleted</string>
     <string name="edit_flashcard">Succesfully edit flashcard</string>
+    <string name="part0">Not started</string>
+    <string name="part1">First round</string>
+    <string name="part2">Second round</string>
+    <string name="part3">Last round</string>
+    <string name="part4">Learnt</string>
 </resources>

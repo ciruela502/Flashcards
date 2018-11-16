@@ -1,17 +1,25 @@
 package martakonik.flashcards.flashcardsList
 
+import android.content.res.Resources
 import android.databinding.BaseObservable
 import android.databinding.Bindable
 import android.os.Bundle
 import android.support.v4.app.FragmentManager
 import android.view.View
+import martakonik.flashcards.data.getTitle
 import martakonik.flashcards.editFlashcards.FLASHCARD_ID
 import martakonik.flashcards.models.Flashcard
 
-class ListViewModel(
+class FlashcardListViewModel(
         private val flashcard: Flashcard?,
-        private val supportFragmentManager: FragmentManager
+        private val supportFragmentManager: FragmentManager,
+        @get: Bindable
+        val headerVisible: Boolean,
+        resources: Resources
 ) : BaseObservable() {
+
+    @get: Bindable
+    val title = resources.getString(flashcard?.partOfBoxId.getTitle())
 
     @get: Bindable
     val translation = flashcard?.translation ?: ""

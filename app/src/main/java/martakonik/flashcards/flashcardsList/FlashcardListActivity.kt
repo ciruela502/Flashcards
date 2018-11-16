@@ -17,7 +17,7 @@ class FlashcardListActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val boxId = intent.getIntExtra(BOX_ID, 0)
-        val adapter = database.getFlashcardsListByBoxId(boxId)?.let { WordsListAdapter(it, supportFragmentManager) }
+        val adapter = database.getFlashcardsListByBoxId(boxId)?.let { WordsListAdapter(it, supportFragmentManager, resources) }
         val decoration = DividerItemDecoration(applicationContext, DividerItemDecoration.VERTICAL)
         binding.viewModel = FlashcardsListViewModel(adapter, database, boxId, decoration, navigator)
     }

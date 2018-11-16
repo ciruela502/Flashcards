@@ -12,6 +12,7 @@
 
     <color name="colorWhite">#ffffff</color>
     <color name="grey">#666666</color>
+    <color name="light_grey">#e6e6e6</color>
 
 
 </resources>

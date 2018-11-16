@@ -10,6 +10,7 @@ open class Flashcard() : RealmObject(), Parcelable {
     @PrimaryKey
     var id: Int = 0
     var boxId: Int = 0
+    var partOfBoxId: Int = 0
     var word = ""
     var translation = ""
     var learnt = false

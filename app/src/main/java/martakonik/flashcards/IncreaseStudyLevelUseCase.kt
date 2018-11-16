@@ -27,6 +27,7 @@ class IncreaseStudyLevelUseCase(private var boxService: BoxService?,
                                     flashcards.remove(flashcard)
                                 } else {
                                     flashcard.learnt = true
+                                    flashcard.partOfBoxId = 4
                                 }
                                 partOfBoxNum = i
                                 break
@@ -38,6 +39,7 @@ class IncreaseStudyLevelUseCase(private var boxService: BoxService?,
             }
 
             if (partOfBoxNum < partOfBoxes.size - 1) {
+                database.increasePartOfBox(arg, ++partOfBoxNum)
                 copiedBox.partOfBoxes.get(++partOfBoxNum)?.flashcards?.add(arg)
             }
 

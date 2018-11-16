@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="martakonik.flashcards.flashcardsList.ListViewModel" />
+            type="martakonik.flashcards.flashcardsList.FlashcardListViewModel" />
     </data>
 
     <LinearLayout
@@ -16,6 +16,22 @@
         android:orientation="vertical">
 
         <TextView
+            android:gravity="center"
+            android:id="@+id/text_view_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.title}"
+            android:textSize="16sp"
+            android:padding="8dp"
+            android:textColor="@color/grey"
+            android:background="@color/light_grey"
+            android:textAllCaps="true"
+            tools:text="Not started"
+            visibility_value="@{viewModel.headerVisible}"/>
+
+        <TextView
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:id="@+id/text_view_word"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,6 +40,8 @@
             tools:text="Word" />
 
         <TextView
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:id="@+id/text_view_translation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
