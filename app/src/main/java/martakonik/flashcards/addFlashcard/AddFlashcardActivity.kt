@@ -19,8 +19,13 @@ class AddFlashcardActivity : BaseActivity() {
 
         val adapter = AddFlashcardAdapter(supportFragmentManager)
         val boxId = intent.getIntExtra(BOX_ID, 0)
-        binding.addViewPager.adapter = adapter
-        binding.viewModel = AddFlashCardActivityViewModel(database, SnackbarHelper(binding.root), adapter, boxId)
+        binding.viewModel = AddFlashCardActivityViewModel(
+                database,
+                adapter,
+                SnackbarHelper(binding.root),
+                boxId,
+                resources
+        )
         binding.dots.setupWithViewPager(binding.addViewPager)
     }
 
