@@ -29,7 +29,8 @@ class LearningFragment : BaseFragment() {
                 childFragmentManager,
                 IncreaseStudyLevelUseCase(boxService, database),
                 DecreaseStudyLevelUseCase(boxService, database),
-                GetNextCardUseCase(boxService, finish))
+                GetNextCardUseCase(boxService, finish),
+                resources)
         binding.viewModel = learningViewModel
 
         return binding.root

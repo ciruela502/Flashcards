@@ -1,5 +1,6 @@
 package martakonik.flashcards.learning
 
+import android.content.res.Resources
 import android.databinding.BaseObservable
 import android.databinding.Bindable
 import android.os.Bundle
@@ -17,11 +18,19 @@ class LearningViewModel(
         private var childFragmentManager: FragmentManager,
         private var increaseStudyLevel: IncreaseStudyLevelUseCase,
         private var decreaseStudyLevel: DecreaseStudyLevelUseCase,
-        private var nextCard: GetNextCardUseCase
+        private var nextCard: GetNextCardUseCase,
+        resources: Resources
 ) : BaseObservable() {
     private var index = 0
     private var showingBack = true
     private var flashcard: Flashcard = Flashcard()
+        set(value) {
+            field = value
+            learningProgressViewModel.partOfBox.set(field.partOfBoxId)
+        }
+
+    @get: Bindable
+    val learningProgressViewModel = LearningProgressViewModel(resources)
 
     @get: Bindable
     var backVisible = View.GONE

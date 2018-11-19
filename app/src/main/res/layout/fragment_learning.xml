@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -13,12 +14,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <include
+            bind:viewModel="@{viewModel.learningProgressViewModel}"
+            layout="@layout/learning_progress_view"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
         <FrameLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="64dp"
-            android:onClick="@{viewModel::flipCard}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="64dp"
             android:background="@color/colorWhite"
-            android:onClick="@{viewModel.flipCard}"
+            android:onClick="@{viewModel::flipCard}"
             android:src="@drawable/ic_flip_black_24dp"
             android:visibility="@{viewModel.frontVisible}"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -46,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="64dp"
             android:background="@color/colorWhite"
-            android:onClick="@{viewModel.onLearnedClick}"
+            android:onClick="@{viewModel::onLearnedClick}"
             android:src="@drawable/ic_done_black_24dp"
             android:visibility="@{viewModel.backVisible}"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -60,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorWhite"
-            android:onClick="@{viewModel.onNotLearned}"
+            android:onClick="@{viewModel::onNotLearned}"
             android:src="@drawable/ic_close_black_24dp"
             android:visibility="@{viewModel.backVisible}"
             app:layout_constraintBottom_toBottomOf="@+id/ok"
