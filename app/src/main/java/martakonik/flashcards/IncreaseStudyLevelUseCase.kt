@@ -25,6 +25,7 @@ class IncreaseStudyLevelUseCase(private var boxService: BoxService?,
                             if (flashcard == arg) {
                                 if (i < partOfBoxes.size - 1 ) {
                                     flashcards.remove(flashcard)
+                                    flashcard.partOfBoxId = flashcard.partOfBoxId+1
                                 } else {
                                     flashcard.learnt = true
                                     flashcard.partOfBoxId = 4
@@ -39,8 +40,8 @@ class IncreaseStudyLevelUseCase(private var boxService: BoxService?,
             }
 
             if (partOfBoxNum < partOfBoxes.size - 1) {
-                database.increasePartOfBox(arg, ++partOfBoxNum)
-                copiedBox.partOfBoxes.get(++partOfBoxNum)?.flashcards?.add(arg)
+                val newPart = ++partOfBoxNum
+                copiedBox.partOfBoxes.get(newPart)?.flashcards?.add(arg)
             }
 
             database.updateBoxService(boxService, copiedBox)

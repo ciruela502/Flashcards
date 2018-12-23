@@ -17,6 +17,7 @@ class LearningFragment : BaseFragment() {
     private lateinit var binding: FragmentLearningBinding
     private lateinit var showDialog: ShowDialog
     private val finish = { finishLearning() }
+    private val finishSession = { finishSession() }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentLearningBinding.inflate(inflater, container, false)
@@ -29,7 +30,7 @@ class LearningFragment : BaseFragment() {
                 childFragmentManager,
                 IncreaseStudyLevelUseCase(boxService, database),
                 DecreaseStudyLevelUseCase(boxService, database),
-                GetNextCardUseCase(boxService, finish),
+                GetNextCardUseCase(database, boxService, finishSession, finish),
                 resources)
         binding.viewModel = learningViewModel
 
@@ -39,5 +40,9 @@ class LearningFragment : BaseFragment() {
 
     private fun finishLearning() {
         showDialog.show(R.string.finish_title, R.string.finish_message, R.string.ok)
+    }
+
+    private fun finishSession() {
+        showDialog.show(R.string.finish_title, R.string.finish_session_message, R.string.ok)
     }
 }

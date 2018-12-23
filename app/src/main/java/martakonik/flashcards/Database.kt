@@ -2,6 +2,7 @@ package martakonik.flashcards
 
 import io.reactivex.Flowable
 import io.realm.Realm
+import io.realm.RealmList
 import io.realm.RealmModel
 import io.realm.RealmResults
 import martakonik.flashcards.data.Box
@@ -30,6 +31,14 @@ class Database(private val realm: Realm) {
 
     fun <T : RealmModel> getCopiedObject(realmObject: T?): T? {
         return realm.copyFromRealm(realmObject)
+    }
+    fun <T : RealmModel> getCopiedObject(realmObject: Iterable<T>?): MutableList<T>? {
+        return realm.copyFromRealm(realmObject)
+    }
+    fun <T : RealmModel> copyToRealmOrUpdate(objects: Iterable<T>) {
+            realm.executeTransaction {
+                it.copyToRealmOrUpdate(objects)
+            }
     }
 
     fun updateBoxService(boxService: BoxService?, copiedBoxService: Box) {
@@ -105,6 +114,41 @@ class Database(private val realm: Realm) {
     fun increasePartOfBox(arg: Flashcard, i: Int) {
         realm.executeTransaction {
             arg.partOfBoxId = i
+        }
+    }
+
+    fun updateFlashcard(flashcard: Flashcard?, state: Boolean) {
+        realm.executeTransaction {
+            flashcard?.displayInSession = state
+            realm.copyToRealmOrUpdate(flashcard)
+        }
+    }
+
+    fun updateBoxWithCurrentLearning(box: Box?, list: RealmList<Flashcard>) {
+        realm.executeTransaction {
+            box?.currentLearning = list
+            realm.copyToRealmOrUpdate(box)
+        }
+    }
+
+    fun clearSession(currentLearning: RealmList<Flashcard>) {
+        realm.executeTransaction {
+            for (flashcard in currentLearning) {
+                flashcard.displayInSession = false
+            }
+        }
+    }
+
+    fun addFlashcardToSession(box: Box?, randomFlashcard: Flashcard) {
+        realm.executeTransaction {
+            box?.currentLearning?.add(randomFlashcard)
+            realm.copyToRealmOrUpdate(box)
+        }
+    }
+
+    fun removeFromList(currentLearning: RealmList<Flashcard>?, flashcard: Flashcard) {
+        realm.executeTransaction {
+            currentLearning?.remove(flashcard)
         }
     }
 }
