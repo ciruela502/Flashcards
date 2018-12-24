@@ -13,7 +13,8 @@ class AddFlashcardActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = DataBindingUtil.setContentView<ActivityAddFlashcardBinding>(this, R.layout.activity_add_flashcard)
+        val binding = DataBindingUtil
+                .setContentView<ActivityAddFlashcardBinding>(this, R.layout.activity_add_flashcard)
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 

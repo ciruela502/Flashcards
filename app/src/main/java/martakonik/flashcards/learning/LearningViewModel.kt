@@ -3,6 +3,7 @@ package martakonik.flashcards.learning
 import android.content.res.Resources
 import android.databinding.BaseObservable
 import android.databinding.Bindable
+import android.databinding.ObservableBoolean
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -21,6 +22,7 @@ class LearningViewModel(
         private var nextCard: GetNextCardUseCase,
         resources: Resources
 ) : BaseObservable() {
+    private val LEARNING_TAG = "learning_fragment"
     private var index = 0
     private var showingBack = true
     private var flashcard: Flashcard = Flashcard()
@@ -33,10 +35,13 @@ class LearningViewModel(
     val learningProgressViewModel = LearningProgressViewModel(resources)
 
     @get: Bindable
-    var backVisible = View.GONE
+    var backVisible = ObservableBoolean(false)
 
     @get: Bindable
-    var frontVisible = View.VISIBLE
+    var frontVisible = ObservableBoolean(true)
+
+    @get: Bindable
+    var nextSessionVisible = ObservableBoolean(false)
 
     init {
         flipCard(null)
@@ -44,60 +49,64 @@ class LearningViewModel(
 
     fun flipCard(view: View?) {
         if (showingBack) {
+            backVisible.set(false)
+            frontVisible.set(true)
             showFront(index)
-            backVisible = View.GONE
-            frontVisible = View.VISIBLE
-            notifyPropertyChanged(backVisible)
-            notifyPropertyChanged(frontVisible)
         } else {
+            backVisible.set(true)
+            frontVisible.set(false)
             showBack()
-            backVisible = View.VISIBLE
-            frontVisible = View.GONE
-            notifyPropertyChanged(backVisible)
-            notifyPropertyChanged(frontVisible)
         }
     }
+        private fun showFront(index: Int) {
+            val nextFlashcard = nextCard.execute(null)
+            if (nextFlashcard != null) {
+                nextSessionVisible.set(false)
+                flashcard = nextFlashcard
+                showingBack = false
+                val front = FrontCardFragment()
+                showFragment(front)
+            } else {
+                //clear
+                childFragmentManager.beginTransaction()
+                        .remove(childFragmentManager.findFragmentById(R.id.container))
+                        .commit()
+                //show another session button
+                nextSessionVisible.set(true)
+                frontVisible.set(false)
+                backVisible.set(false)
+            }
+        }
 
-    private fun showFront(index: Int) {
-        val nextFlashcard = nextCard.execute(null)
-        nextFlashcard?.let {
-            flashcard = nextFlashcard
-            showingBack = false
-            val front = FrontCardFragment()
-            showFragment(front)
+        private fun showFragment(fragment: Fragment) {
+            val bundle = Bundle()
+            bundle.putParcelable(CARD, flashcard)
+            fragment.arguments = bundle
+
+            childFragmentManager.beginTransaction()
+                    .setCustomAnimations(
+                            R.animator.card_flip_right_in,
+                            R.animator.card_flip_right_out,
+                            R.animator.card_flip_left_in,
+                            R.animator.card_flip_left_out)
+                    .replace(R.id.container, fragment, LEARNING_TAG)
+                    .commit()
+        }
+
+        private fun showBack() {
+            showingBack = true
+            val back = BackCardFragment()
+            showFragment(back)
+
+        }
+
+        fun onLearnedClick(view: View) {
+            increaseStudyLevel.execute(flashcard)
+            flipCard(null)
+        }
+
+        fun onNotLearned(view: View) {
+            decreaseStudyLevel.execute(flashcard)
+            flipCard(null)
         }
     }
-
-    private fun showFragment(fragment: Fragment) {
-        val bundle = Bundle()
-        bundle.putParcelable(CARD, flashcard)
-        fragment.arguments = bundle
-
-        childFragmentManager.beginTransaction()
-                .setCustomAnimations(
-                        R.animator.card_flip_right_in,
-                        R.animator.card_flip_right_out,
-                        R.animator.card_flip_left_in,
-                        R.animator.card_flip_left_out)
-                .replace(R.id.container, fragment)
-                .addToBackStack(null)
-                .commit()
-    }
-
-    private fun showBack() {
-        showingBack = true
-        val back = BackCardFragment()
-        showFragment(back)
-
-    }
-
-    fun onLearnedClick(view: View) {
-        increaseStudyLevel.execute(flashcard)
-        flipCard(null)
-    }
-
-    fun onNotLearned(view: View) {
-        decreaseStudyLevel.execute(flashcard)
-        flipCard(null)
-    }
-}

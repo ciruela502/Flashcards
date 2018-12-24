@@ -18,7 +18,7 @@
     <string name="add_flashcards">Add flashcards</string>
     <string name="dialog_hint">Enter new box name</string>
     <string name="dialog_title">Add new box</string>
-    <string name="welcome_string">Add new box to see it here</string>
+    <string name="welcome_string">There\'s nothing here right now. Click to create your first flashcard box</string>
     <string name="finish_title">Congratulations!</string>
     <string name="finish_message">You have just finish learning flashcards from this box.</string>
     <string name="finish_session_message">You have just finish learning session. You can start another session or continue later</string>
@@ -31,4 +31,5 @@
     <string name="part2">Second round</string>
     <string name="part3">Last round</string>
     <string name="part4">Learnt</string>
+    <string name="box_deleted">Box deleted</string>
 </resources>

@@ -23,11 +23,12 @@ class IncreaseStudyLevelUseCase(private var boxService: BoxService?,
                     if (!flashcards.isEmpty()) {
                         for (flashcard in flashcards) {
                             if (flashcard == arg) {
-                                if (i < partOfBoxes.size - 1 ) {
+                                if (i < partOfBoxes.size - 1) {
                                     flashcards.remove(flashcard)
-                                    flashcard.partOfBoxId = flashcard.partOfBoxId+1
+                                    flashcard.partOfBoxId = flashcard.partOfBoxId + 1
                                 } else {
                                     flashcard.learnt = true
+                                    copiedBox.currentLearning.remove(flashcard)
                                     flashcard.partOfBoxId = 4
                                 }
                                 partOfBoxNum = i

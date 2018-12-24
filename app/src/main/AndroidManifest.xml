@@ -19,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".addFlashcard.AddFlashcardActivity" />
+        <activity android:name=".addFlashcard.AddFlashcardActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".BaseActivity" />
         <activity android:name=".addBox.AddBoxActivity" />
         <activity android:name=".learning.LearningActivity" />

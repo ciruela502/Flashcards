@@ -42,7 +42,7 @@ class WordsListAdapter(
         when (position) {
             0 -> if (getItem(position)?.partOfBoxId == 0) return true
             itemCount - 1 -> return false
-            else -> if (getItem(position)?.partOfBoxId != getItem(position +1)?.partOfBoxId) {
+            else -> if (getItem(position - 1)?.partOfBoxId != getItem(position)?.partOfBoxId) {
                 return true
             }
         }

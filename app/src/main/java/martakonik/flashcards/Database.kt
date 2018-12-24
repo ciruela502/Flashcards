@@ -117,7 +117,7 @@ class Database(private val realm: Realm) {
         }
     }
 
-    fun updateFlashcard(flashcard: Flashcard?, state: Boolean) {
+    fun updateFlashcardDisplayInSession(flashcard: Flashcard?, state: Boolean) {
         realm.executeTransaction {
             flashcard?.displayInSession = state
             realm.copyToRealmOrUpdate(flashcard)
@@ -149,6 +149,13 @@ class Database(private val realm: Realm) {
     fun removeFromList(currentLearning: RealmList<Flashcard>?, flashcard: Flashcard) {
         realm.executeTransaction {
             currentLearning?.remove(flashcard)
+        }
+    }
+
+    fun deleteBox(boxId: Int) {
+        realm.executeTransaction {
+            realm.where(Flashcard::class.java).equalTo("boxId", boxId).findAll().deleteAllFromRealm()
+            realm.where(Box::class.java).equalTo("id", boxId).findFirst()?.deleteFromRealm()
         }
     }
 }

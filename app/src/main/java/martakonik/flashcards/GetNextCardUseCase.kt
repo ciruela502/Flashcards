@@ -12,7 +12,6 @@ class GetNextCardUseCase(private val database: Database,
                          private val finishSession: () -> Unit,
                          private val finish: () -> Unit) : UseCase<Void, Flashcard> {
 
-    var previousCardId = -1
     var boxLearnt = false
     var count = 3
 
@@ -29,22 +28,18 @@ class GetNextCardUseCase(private val database: Database,
             }
             if (currentLearning.size < count) {
                 val randomFlashcard = getRandomFlashcard(boxService.box)
-                if(randomFlashcard != null) {
-
+                if (randomFlashcard != null) {
                     database.addFlashcardToSession(boxService.box, randomFlashcard)
                 }
             }
             for (flashcard in it)
                 if (!flashcard.displayInSession) {
-                    if (previousCardId != flashcard.id || it.size == 1) {
-                        if (flashcard.learnt && !boxLearnt) {
-                            boxLearnt = true
-                            finish()
-                        }
-                        database.updateFlashcard(flashcard, true)
-                        previousCardId = flashcard.id
-                        return flashcard
+                    if (flashcard.learnt && !boxLearnt) {
+                        boxLearnt = true
+                        finish()
                     }
+                    database.updateFlashcardDisplayInSession(flashcard, true)
+                    return flashcard
                 }
         }
         finishSession()
@@ -60,10 +55,13 @@ class GetNextCardUseCase(private val database: Database,
         }
         return RealmList()
     }
+
     private fun getRandomFlashcard(box: Box?): Flashcard? {
         val notStartedFlashcards = box?.partOfBoxes?.get(0)?.flashcards
         notStartedFlashcards?.let {
-            return it[Random().nextInt(it.size)]
+            if (notStartedFlashcards.size > 0) {
+                return it[Random().nextInt(it.size)]
+            }
         }
         return null
     }
