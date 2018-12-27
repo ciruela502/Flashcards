@@ -10,7 +10,7 @@
     <string name="box">Box</string>
     <string name="next">Next</string>
     <string name="box_name">Box name</string>
-    <string name="empty_fields_message">Fill all fields: box, word and translation</string>
+    <string name="empty_fields_message">Fill all fields: word and translation</string>
     <string name="type_new_word">Type new word</string>
     <string name="type_translation">Type translation</string>
     <string name="learn">Learn</string>
@@ -18,7 +18,7 @@
     <string name="add_flashcards">Add flashcards</string>
     <string name="dialog_hint">Enter new box name</string>
     <string name="dialog_title">Add new box</string>
-    <string name="welcome_string">There\'s nothing here right now. Click to create your first flashcard box</string>
+    <string name="welcome_string">There\'s nothing here right now.</string>
     <string name="finish_title">Congratulations!</string>
     <string name="finish_message">You have just finish learning flashcards from this box.</string>
     <string name="finish_session_message">You have just finish learning session. You can start another session or continue later</string>
@@ -32,4 +32,7 @@
     <string name="part3">Last round</string>
     <string name="part4">Learnt</string>
     <string name="box_deleted">Box deleted</string>
+    <string name="continue_learning">Continue learning</string>
+    <string name="click_here_to_start">Click here to start</string>
+    <string name="box_statistics">Box statistics:</string>
 </resources>

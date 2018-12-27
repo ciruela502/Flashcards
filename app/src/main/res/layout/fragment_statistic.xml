@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="martakonik.flashcards.learning.statistic.StatisticViewModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:text="@string/box_statistics"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_part0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:text="@string/part0"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_part0_value"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/tv_part0_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.partZeroValue}"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_part0"
+            app:layout_constraintTop_toTopOf="@+id/tv_part0"
+            tools:text="3" />
+
+        <TextView
+            android:id="@+id/tv_part1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/part1"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_part0"
+            app:layout_constraintTop_toBottomOf="@+id/tv_part0" />
+
+        <TextView
+            android:id="@+id/tv_part1_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.partFirstValue}"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_part0_value"
+            app:layout_constraintStart_toStartOf="@+id/tv_part0_value"
+            app:layout_constraintTop_toBottomOf="@+id/tv_part0"
+            tools:text="6" />
+
+        <TextView
+            android:id="@+id/tv_part2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/part2"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_part1"
+            app:layout_constraintTop_toBottomOf="@+id/tv_part1" />
+
+        <TextView
+            android:id="@+id/tv_part2_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.partSecondValue}"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_part1_value"
+            app:layout_constraintStart_toStartOf="@+id/tv_part1_value"
+            app:layout_constraintTop_toBottomOf="@+id/tv_part1"
+            tools:text="6" />
+
+        <TextView
+            android:id="@+id/tv_part3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/part3"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_part2"
+            app:layout_constraintTop_toBottomOf="@+id/tv_part2" />
+
+        <TextView
+            android:id="@+id/tv_part3_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.partThirdValue}"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_part2_value"
+            app:layout_constraintStart_toStartOf="@+id/tv_part2_value"
+            app:layout_constraintTop_toBottomOf="@+id/tv_part2"
+            tools:text="6" />
+
+        <TextView
+            android:id="@+id/tv_part4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/part4"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_part3"
+            app:layout_constraintTop_toBottomOf="@+id/tv_part3" />
+
+        <TextView
+            android:id="@+id/tv_part4_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.partLastValue}"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_part3_value"
+            app:layout_constraintStart_toStartOf="@+id/tv_part3_value"
+            app:layout_constraintTop_toBottomOf="@+id/tv_part3"
+            tools:text="6" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

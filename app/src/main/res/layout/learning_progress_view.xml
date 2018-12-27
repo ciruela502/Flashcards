@@ -11,7 +11,8 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        visibility_value="@{viewModel.visible}">
 
         <TextView
             android:id="@+id/textView2"
@@ -22,6 +23,7 @@
             android:padding="8dp"
             android:text="@{viewModel.textNotStarted}"
             android:textColor="@{viewModel.colorNotStarted}"
+            android:background="@{viewModel.backgroundNotStartedRound}"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView"
@@ -38,6 +40,7 @@
             android:padding="8dp"
             android:text="@{viewModel.textFirstRound}"
             android:textColor="@{viewModel.colorFirstRound}"
+            android:background="@{viewModel.backgroundFirstRound}"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView3"
@@ -53,6 +56,7 @@
             android:padding="8dp"
             android:text="@{viewModel.textSecondRound}"
             android:textColor="@{viewModel.colorSecondRound}"
+            android:background="@{viewModel.backgroundSecondRound}"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView4"
@@ -69,6 +73,7 @@
             android:padding="8dp"
             android:text="@{viewModel.textThirdRound}"
             android:textColor="@{viewModel.colorThirdRound}"
+            android:background="@{viewModel.backgroundThirdRound}"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView5"
@@ -84,6 +89,7 @@
             android:padding="8dp"
             android:text="@{viewModel.textLastRound}"
             android:textColor="@{viewModel.colorLastRound}"
+            android:background="@{viewModel.backgroundLastRound}"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

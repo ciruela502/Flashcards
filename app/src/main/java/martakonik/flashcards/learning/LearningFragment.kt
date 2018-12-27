@@ -43,6 +43,6 @@ class LearningFragment : BaseFragment() {
     }
 
     private fun finishSession() {
-        showDialog.show(R.string.finish_title, R.string.finish_session_message, R.string.ok)
+        learningViewModel.showStatistic()
     }
 }

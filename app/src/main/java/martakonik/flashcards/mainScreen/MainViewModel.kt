@@ -36,6 +36,10 @@ class MainViewModel(
     var boxExist = false
 
     @get: Bindable("boxExist")
+    var floatingAddButtonVisible = false
+        get() = boxExist
+
+    @get: Bindable("boxExist")
     var listVisible = false
         get() = boxExist
 

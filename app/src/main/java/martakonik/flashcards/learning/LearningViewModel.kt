@@ -12,7 +12,9 @@ import martakonik.flashcards.DecreaseStudyLevelUseCase
 import martakonik.flashcards.GetNextCardUseCase
 import martakonik.flashcards.IncreaseStudyLevelUseCase
 import martakonik.flashcards.R
+import martakonik.flashcards.learning.statistic.StatisticFragment
 import martakonik.flashcards.models.Flashcard
+import martakonik.flashcards.utils.BOX_ID
 
 //todo why var ?
 class LearningViewModel(
@@ -58,55 +60,79 @@ class LearningViewModel(
             showBack()
         }
     }
-        private fun showFront(index: Int) {
-            val nextFlashcard = nextCard.execute(null)
-            if (nextFlashcard != null) {
-                nextSessionVisible.set(false)
-                flashcard = nextFlashcard
-                showingBack = false
-                val front = FrontCardFragment()
-                showFragment(front)
-            } else {
-                //clear
-                childFragmentManager.beginTransaction()
-                        .remove(childFragmentManager.findFragmentById(R.id.container))
-                        .commit()
-                //show another session button
-                nextSessionVisible.set(true)
-                frontVisible.set(false)
-                backVisible.set(false)
-            }
-        }
 
-        private fun showFragment(fragment: Fragment) {
-            val bundle = Bundle()
-            bundle.putParcelable(CARD, flashcard)
-            fragment.arguments = bundle
+    fun continueLearning(view: View?) {
+        learningProgressViewModel.show()
+        flipCard(null)
+    }
 
-            childFragmentManager.beginTransaction()
-                    .setCustomAnimations(
-                            R.animator.card_flip_right_in,
-                            R.animator.card_flip_right_out,
-                            R.animator.card_flip_left_in,
-                            R.animator.card_flip_left_out)
-                    .replace(R.id.container, fragment, LEARNING_TAG)
-                    .commit()
-        }
-
-        private fun showBack() {
-            showingBack = true
-            val back = BackCardFragment()
-            showFragment(back)
-
-        }
-
-        fun onLearnedClick(view: View) {
-            increaseStudyLevel.execute(flashcard)
-            flipCard(null)
-        }
-
-        fun onNotLearned(view: View) {
-            decreaseStudyLevel.execute(flashcard)
-            flipCard(null)
+    private fun showFront(index: Int) {
+        val nextFlashcard = nextCard.execute(null)
+        if (nextFlashcard != null) {
+            nextSessionVisible.set(false)
+            flashcard = nextFlashcard
+            showingBack = false
+            val front = FrontCardFragment()
+            showFragment(front)
+        } else {
+            finishedSession()
         }
     }
+
+    private fun finishedSession() {
+        nextSessionVisible.set(true)
+        frontVisible.set(false)
+        backVisible.set(false)
+        learningProgressViewModel.hide()
+    }
+
+    private fun showFragment(fragment: Fragment) {
+        val bundle = Bundle()
+        bundle.putParcelable(CARD, flashcard)
+        fragment.arguments = bundle
+
+        childFragmentManager.beginTransaction()
+                .setCustomAnimations(
+                        R.animator.card_flip_right_in,
+                        R.animator.card_flip_right_out,
+                        R.animator.card_flip_left_in,
+                        R.animator.card_flip_left_out)
+                .replace(R.id.container, fragment, LEARNING_TAG)
+                .commit()
+    }
+
+    private fun showBack() {
+        showingBack = true
+        val back = BackCardFragment()
+        showFragment(back)
+
+    }
+
+    fun onLearnedClick(view: View) {
+        increaseStudyLevel.execute(flashcard)
+        flipCard(null)
+    }
+
+    fun onNotLearned(view: View) {
+        decreaseStudyLevel.execute(flashcard)
+        flipCard(null)
+    }
+
+    fun showStatistic() {
+        val bundle = Bundle()
+        bundle.putInt(BOX_ID, flashcard.boxId)
+        val statisticFragment = StatisticFragment().apply {
+            arguments = bundle
+        }
+
+        childFragmentManager.beginTransaction()
+                .setCustomAnimations(
+                        R.animator.card_flip_right_in,
+                        R.animator.card_flip_right_out,
+                        R.animator.card_flip_left_in,
+                        R.animator.card_flip_left_out)
+                .replace(R.id.container, statisticFragment, LEARNING_TAG)
+                .commit()
+
+    }
+}
