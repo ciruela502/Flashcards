@@ -10,7 +10,7 @@ import martakonik.flashcards.data.getTitle
 import martakonik.flashcards.editFlashcards.FLASHCARD_ID
 import martakonik.flashcards.models.Flashcard
 
-class FlashcardListViewModel(
+class FlashcardItemListViewModel(
         private val flashcard: Flashcard?,
         private val supportFragmentManager: FragmentManager,
         @get: Bindable

@@ -28,7 +28,7 @@ class WordsListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.apply {
-            viewModel = FlashcardListViewModel(
+            viewModel = FlashcardItemListViewModel(
                     getItem(position),
                     supportFragmentManager,
                     checkIfAddHeader(position),
